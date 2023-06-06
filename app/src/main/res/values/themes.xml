@@ -1,0 +1,68 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.DispositivosMoviles" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.DispositivosMoviles" parent="Base.Theme.DispositivosMoviles">
+        <item name="android:fontFamily">@font/roboto</item>
+        <!--<item name="android:backgroundTint">@color/background_dm</item> -->
+        <item name="android:textColor">@color/font_color_dm</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="textPrincipal">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">46sp</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="btnFacebook">
+
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:backgroundTint">@color/blue</item>
+    </style>
+
+    <style name="btnTwitter">
+
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:backgroundTint">#2196F3</item>
+    </style>
+
+    <style name="btnIngresar">
+
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:backgroundTint">#F13575</item>
+    </style>
+
+    <style name="btnRegistrar">
+
+        <item name="android:textColor">#F13575</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:backgroundTint">@color/white</item>
+    </style>
+
+    <style name="correo">
+        <item name="android:textStyle">bold</item>
+
+        <item name="android:textColor">#F13575</item>
+
+    </style>
+
+
+    <style name="contraseña">
+        <item name="android:textStyle">bold</item>
+
+        <item name="android:textColor">#F13575</item>
+
+    </style>
+</resources>
