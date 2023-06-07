@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Dispositivos Moviles</string>
     <string name="name_banner">Bienvenidos</string>
+    <string name="menu_inicio">Inicio</string>
+    <string name="menu_favorito">Favorito</string>
+    <string name="menu_chat_gpt">Chat GPT</string>
 </resources>
