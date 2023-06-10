@@ -7,6 +7,7 @@ import android.util.Log
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.ActivityMainBinding
 import com.example.dispositivosmoviles.databinding.PrincipalActivityBinding
+import com.example.dispositivosmoviles.ui.fragments.FirstFragment
 import com.google.android.material.snackbar.Snackbar
 
 class PrincipalActivity : AppCompatActivity() {
@@ -51,16 +52,14 @@ class PrincipalActivity : AppCompatActivity() {
         binding.bottomNavigation.setOnItemReselectedListener { item ->
             when(item.itemId) {
                 R.id.Inicio -> {
-                    var suma : Int = 0
-                    for(i in listOf<Int>(1,2,3)){
-                        suma = suma+i
 
-                    }
-                    Snackbar.make(binding.txtName,
-                        "La suma es ${suma}",
-                        Snackbar.LENGTH_LONG
-                    ).show()
-                    // Respond to navigation item 1 click
+                    val frag = FirstFragment()
+                    val transaction= supportFragmentManager.beginTransaction()
+                    transaction.add(binding.frmContainer.id, frag)
+                    transaction.addToBackStack(null)
+                    transaction.commit() // o se crea all el fragment o nada
+
+
                     true
                 }
                 R.id.Favorito -> {
