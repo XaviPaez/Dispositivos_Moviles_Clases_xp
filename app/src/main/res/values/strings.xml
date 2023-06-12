@@ -7,4 +7,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="liga_deportiva_universitaria_de_quito">Liga Deportiva Universitaria de Quito</string>
+    <string name="cristiano_ronaldo">Cristiano_Ronaldo</string>
+    <string name="Cristiano_Ronaldo">Cristiano Ronaldo</string>
+    <string name="chat_gpt_la_nueva_inteligencia_artificial">Chat Gpt la nueva inteligencia artificial</string>
 </resources>

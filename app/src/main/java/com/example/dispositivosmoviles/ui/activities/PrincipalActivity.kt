@@ -4,9 +4,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.ActivityMainBinding
+import com.example.dispositivosmoviles.databinding.FragmentFirst1Binding
 import com.example.dispositivosmoviles.databinding.PrincipalActivityBinding
+import com.example.dispositivosmoviles.ui.fragments.ChatGptFragment
+import com.example.dispositivosmoviles.ui.fragments.FavoriteFragment
 import com.example.dispositivosmoviles.ui.fragments.FirstFragment
 import com.google.android.material.snackbar.Snackbar
 
@@ -64,31 +70,23 @@ class PrincipalActivity : AppCompatActivity() {
                 }
                 R.id.Favorito -> {
                     // Respond to navigation item 2 click
-                    var suma : Int = 0
-                    for(i in listOf<Int>(1,2,30)){
-                        suma = suma+i
+                    val frag = FavoriteFragment()
+                    val transaction= supportFragmentManager.beginTransaction()
+                    transaction.add(binding.frmContainer.id, frag)
+                    transaction.addToBackStack(null)
+                    transaction.commit() // o se crea all el fragment o nada
 
-                    }
-                    Snackbar.make(binding.txtName,
-                        "La suma es ${suma}",
-                        Snackbar.LENGTH_LONG
-                    ).show()
-                    // Respond to navigation item 1 click
+
                     true
                 }
 
                 R.id.chatgpt -> {
-                    // Respond to navigation item 2 click
-                    var suma : Int = 0
-                    for(i in listOf<Int>(1,10,3)){
-                        suma = suma+i
+                    val frag = ChatGptFragment()
+                    val transaction= supportFragmentManager.beginTransaction()
+                    transaction.add(binding.frmContainer.id, frag)
+                    transaction.addToBackStack(null)
+                    transaction.commit() // o se crea all el fragment o nada
 
-                    }
-                    Snackbar.make(binding.txtName,
-                        "La suma es ${suma}",
-                        Snackbar.LENGTH_LONG
-                    ).show()
-                    // Respond to navigation item 1 click
                     true
                 }
                 else -> false
