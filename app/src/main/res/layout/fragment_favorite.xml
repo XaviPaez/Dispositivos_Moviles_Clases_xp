@@ -9,12 +9,14 @@
     <!-- TODO: Update blank fragment layout -->
 
     <TextView
+        android:id="@+id/textView6"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#AF9A9A"
         android:backgroundTint="#242942"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp" />
+
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -24,10 +26,9 @@
         app:cardCornerRadius="12dp"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.771"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="218dp">
+        tools:layout_editor_absoluteY="176dp">
 
 
         <TextView
@@ -50,5 +51,7 @@
             android:src="@drawable/cr7" />
 
     </androidx.cardview.widget.CardView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

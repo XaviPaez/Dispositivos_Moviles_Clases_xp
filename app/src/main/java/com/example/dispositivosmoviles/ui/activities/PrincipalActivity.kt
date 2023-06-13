@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.ActivityMainBinding
 import com.example.dispositivosmoviles.databinding.FragmentFirst1Binding
@@ -14,6 +15,7 @@ import com.example.dispositivosmoviles.databinding.PrincipalActivityBinding
 import com.example.dispositivosmoviles.ui.fragments.ChatGptFragment
 import com.example.dispositivosmoviles.ui.fragments.FavoriteFragment
 import com.example.dispositivosmoviles.ui.fragments.FirstFragment
+import com.example.dispositivosmoviles.ui.utilities.FragmentsManager
 import com.google.android.material.snackbar.Snackbar
 
 class PrincipalActivity : AppCompatActivity() {
@@ -31,18 +33,14 @@ class PrincipalActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        //opcion 1
-//        intent.extras!!.let {
-//            var name = it.getString("var1")
-//        }
-
-        //opcion 2
         var name:String=""
-       // intent.extras.let {
-       //     name = it?.getString("var1")!!
-       // }
-        binding.txtName.text = "Bienvenido " + name.toString()
 
+        binding.txtName.text = "Bienvenido " + name.toString()
+        FragmentsManager().replaceFragment(
+            supportFragmentManager,
+            binding.frmContainer.id,
+            FavoriteFragment()
+        )
         initClass()
 
     }
@@ -59,38 +57,33 @@ class PrincipalActivity : AppCompatActivity() {
             when(item.itemId) {
                 R.id.Inicio -> {
 
-                    val frag = FirstFragment()
-                    val transaction= supportFragmentManager.beginTransaction()
-                    transaction.add(binding.frmContainer.id, frag)
-                    transaction.addToBackStack(null)
-                    transaction.commit() // o se crea all el fragment o nada
+
+
+                    FragmentsManager().replaceFragment(
+                        supportFragmentManager,
+                        binding.frmContainer.id,
+                        FirstFragment()
+                    )
 
 
                     true
                 }
                 R.id.Favorito -> {
                     // Respond to navigation item 2 click
-                    val frag = FavoriteFragment()
-                    val transaction= supportFragmentManager.beginTransaction()
-                    transaction.add(binding.frmContainer.id, frag)
-                    transaction.addToBackStack(null)
-                    transaction.commit() // o se crea all el fragment o nada
 
-
-                    true
                 }
 
                 R.id.chatgpt -> {
-                    val frag = ChatGptFragment()
-                    val transaction= supportFragmentManager.beginTransaction()
-                    transaction.add(binding.frmContainer.id, frag)
-                    transaction.addToBackStack(null)
-                    transaction.commit() // o se crea all el fragment o nada
+              // o se crea all el fragment o nada
 
                     true
                 }
                 else -> false
             }
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
     }
 }

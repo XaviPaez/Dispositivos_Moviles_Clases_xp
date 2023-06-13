@@ -65,4 +65,11 @@
         <item name="android:textColor">#F13575</item>
 
     </style>
+    <style name="ActiveIndicator" parent = "Widget.Material3.BottomNavigationView.ActiveIndicator">
+
+
+        <item name="android:color">@color/material_on_background_emphasis_high_type</item>
+
+    </style>
+
 </resources>
