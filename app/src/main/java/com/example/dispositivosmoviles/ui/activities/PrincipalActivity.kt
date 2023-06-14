@@ -36,7 +36,7 @@ class PrincipalActivity : AppCompatActivity() {
         var name:String=""
 
         binding.txtName.text = "Bienvenido " + name.toString()
-        FragmentsManager().replaceFragment(
+        FragmentsManager().replaceFragmet(
             supportFragmentManager,
             binding.frmContainer.id,
             FavoriteFragment()
@@ -59,7 +59,7 @@ class PrincipalActivity : AppCompatActivity() {
 
 
 
-                    FragmentsManager().replaceFragment(
+                    FragmentsManager().replaceFragmet(
                         supportFragmentManager,
                         binding.frmContainer.id,
                         FirstFragment()

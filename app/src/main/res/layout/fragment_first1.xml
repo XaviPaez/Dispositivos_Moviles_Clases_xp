@@ -12,23 +12,27 @@
         android:id="@+id/textView8"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
         android:background="#AF9A9A"
         android:backgroundTint="#4C1A1A"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:layout_editor_absoluteX="-65dp" />
 
     <androidx.cardview.widget.CardView
+
         android:id="@+id/cardView2"
-        android:layout_width="209dp"
-        android:layout_height="136dp"
+        android:layout_width="152dp"
+        android:layout_height="87dp"
         android:layout_margin="35dp"
         android:elevation="10dp"
-
+        app:cardBackgroundColor="#FFD3D3"
         app:cardCornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.771"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints">
 
 
@@ -47,31 +51,29 @@
 
         <ImageView
             android:id="@+id/imageView5"
-            android:layout_width="match_parent"
-            android:layout_height="154dp"
+            android:layout_width="79dp"
+            android:layout_height="75dp"
             android:src="@drawable/liga" />
 
     </androidx.cardview.widget.CardView>
 
-
     <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="25dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/spinner"
+        android:layout_width="403dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="132dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMarvelChars"
+        android:layout_width="142dp"
+        android:layout_height="195dp"
+        android:layout_marginStart="52dp"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="221dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

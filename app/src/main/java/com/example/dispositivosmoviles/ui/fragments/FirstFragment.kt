@@ -36,12 +36,16 @@ class FirstFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        val names = arrayListOf<String>(
+            "Carlos", "Xavier", "Andres",
+            "Pepe", "Mariano", "Rosa"
+        )
+        val adapter =
+            ArrayAdapter<String>(requireActivity(),
 
-        val names = arrayListOf<String>("Carlos", "Xavier", "Andres", "Mike", "Pablo", "Mika")
-
-    val adapter = ArrayAdapter<String>(requireActivity(), android.R.layout.simple_spinner_item, names)
+                R.layout.spinner_item_layout , names)
         binding.spinner.adapter = adapter
-        binding.listView.adapter = adapter
+        binding.listview.adapter = adapter
+    }
 
-
-}}
+}
