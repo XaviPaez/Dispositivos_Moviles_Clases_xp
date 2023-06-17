@@ -1,14 +1,20 @@
 package com.example.dispositivosmoviles.ui.fragments
 
 import android.os.Bundle
+import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.FragmentFirst1Binding
 import com.example.dispositivosmoviles.databinding.PrincipalActivityBinding
+import com.example.dispositivosmoviles.logic.List.ListItems
+import com.example.dispositivosmoviles.ui.adapters.MarvelAdapter
 
 /**
  * A simple [Fragment] subclass.
@@ -45,7 +51,11 @@ class FirstFragment : Fragment() {
 
                 R.layout.spinner_item_layout , names)
         binding.spinner.adapter = adapter
-        binding.listview.adapter = adapter
+        val rvAdapter = MarvelAdapter(ListItems().returnMarvelChars())
+        val rvMarvel = binding.rvMarvelChars
+        rvMarvel.adapter = rvAdapter
+        rvMarvel.layoutManager = LinearLayoutManager(
+            requireActivity(), LinearLayoutManager.VERTICAL, false)
     }
 
 }
