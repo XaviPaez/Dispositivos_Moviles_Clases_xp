@@ -45,7 +45,8 @@
         android:layout_width="354dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="14dp" />
+        android:layout_marginTop="14dp"
+        android:minHeight="48dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -54,6 +55,11 @@
         android:layout_marginTop="2dp"
         android:layout_marginRight="25dp"
         android:layout_marginBottom="25dp">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/rvSwipe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvMarvelChars"
@@ -66,6 +72,8 @@
 
 
             />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </LinearLayout>
 
 
