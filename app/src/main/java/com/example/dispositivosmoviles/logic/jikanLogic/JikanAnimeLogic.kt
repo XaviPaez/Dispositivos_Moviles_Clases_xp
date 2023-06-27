@@ -8,24 +8,41 @@ class JikanAnimeLogic {
 
     suspend fun getAllAnimes(): List<MarvelChars>{
 
-        val call = ApiConnection.getJikanConnecion()
-        val response= call.create(JikanEndpoint::class.java).getAllAnimes()
         var itemList = arrayListOf<MarvelChars>()
+
+        val response = ApiConnection.getService(
+            ApiConnection.typeApi.Jikan,
+            JikanEndpoint::class.java
+        ).getAllAnimes()
 
         if(response.isSuccessful){
 
             response.body()!!.data.forEach {
-                val m= MarvelChars(
+                val m = MarvelChars(
                     it.mal_id,
                     it.title,
-                    it.titles[0].title ,
-                    it.images.jpg.image_url,)
+                    it.titles[0].title,
+                    it.images.jpg.image_url,
+                )
                 itemList.add(m)
-            }
+//
+//        val response= call.create(JikanEndpoint::class.java).getAllAnimes()
+//        var itemList = arrayListOf<MarvelChars>()
 
-        }
+//        if(response.isSuccessful){
+//
+//            response.body()!!.data.forEach {
+//                val m= MarvelChars(
+//                    it.mal_id,
+//                    it.title,
+//                    it.titles[0].title ,
+//                    it.images.jpg.image_url,)
+//                itemList.add(m)
+//            }
+//
+//        }
 
-
+            }}
         return itemList
     }
 }
