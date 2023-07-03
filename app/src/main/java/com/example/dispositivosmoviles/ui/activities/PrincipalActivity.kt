@@ -15,7 +15,7 @@ import com.example.dispositivosmoviles.databinding.PrincipalActivityBinding
 import com.example.dispositivosmoviles.ui.fragments.ChatGptFragment
 import com.example.dispositivosmoviles.ui.fragments.FavoriteFragment
 import com.example.dispositivosmoviles.ui.fragments.FirstFragment
-import com.example.dispositivosmoviles.ui.utilities.FragmentsManager
+import com.example.dispositivosmoviles.ui.fragments.utilities.FragmentsManager
 import com.google.android.material.snackbar.Snackbar
 
 class PrincipalActivity : AppCompatActivity() {

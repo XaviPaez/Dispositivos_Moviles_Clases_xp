@@ -1,4 +1,4 @@
-package com.example.dispositivosmoviles.ui.utilities
+package com.example.dispositivosmoviles.ui.fragments.utilities
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

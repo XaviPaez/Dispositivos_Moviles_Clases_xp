@@ -1,6 +1,7 @@
 package com.example.dispositivosmoviles.ui.adapters
 
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,10 +11,11 @@ import com.example.dispositivosmoviles.databinding.MarvelCharactersBinding
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 
-class MarvelAdapter(private val items: List<MarvelChars>,
-                    private var fnClick : (MarvelChars) -> Unit
+class MarvelAdapter(private var fnClick : (MarvelChars) -> Unit
         ) :
+
     RecyclerView.Adapter<MarvelAdapter.MarvelViewHolder>() {
+    var items: List<MarvelChars> = listOf()
     class MarvelViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private val binding: MarvelCharactersBinding = MarvelCharactersBinding.bind(view)
@@ -56,5 +58,10 @@ class MarvelAdapter(private val items: List<MarvelChars>,
     }
 
     override fun getItemCount(): Int = items.size
+
+    fun updateListItems(newItem: List<MarvelChars>){
+        items= items.plus(newItem)
+        notifyDataSetChanged()
+    }
 
 }
