@@ -19,6 +19,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="activeIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/red</item>
+    </style>
+
     <style name="btnFacebook">
 
         <item name="android:textColor">@color/white</item>

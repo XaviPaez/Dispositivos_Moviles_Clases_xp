@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#C87D7D"
+    android:background="#2F313E"
     android:orientation="vertical"
     tools:context=".ui.fragments.FirstFragment">
 
@@ -16,25 +16,25 @@
         android:layout_marginLeft="120dp"
         android:layout_marginTop="20dp"
         android:elevation="10dp"
-        app:cardBackgroundColor="#FFD3D3"
+        app:cardBackgroundColor="#A9ADC3"
         app:cardCornerRadius="24dp">
 
         <TextView
             android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/satisfy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
             android:gravity="center_horizontal|bottom"
             android:text="Mi primer Fragment"
             android:textColor="#000000"
-            android:textSize="34sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="79dp"
             android:layout_height="75dp"
-            android:src="@drawable/cr7" />
+            />
 
     </androidx.cardview.widget.CardView>
 
