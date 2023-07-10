@@ -1,6 +1,5 @@
 package com.example.dispositivosmoviles.data.endpoints
 
-import com.example.dispositivosmoviles.data.entities.jikan.JikanAnimeEntity
 import com.example.dispositivosmoviles.data.entities.marvel.Characters.Chars
 import retrofit2.Response
 import retrofit2.http.GET
@@ -8,22 +7,21 @@ import retrofit2.http.Query
 
 interface MarvelEndpoint {
 
-
     @GET("characters")
-    suspend fun getCharacterStarWith(
+    suspend fun getCharacterStartWith(
         @Query("nameStartsWith") name: String,
-
-        @Query("limit") limit : Int,
-
-
+        @Query("limit") limit: Int,
         @Query("ts") ts: String = "uce",
-
-        @Query("apikey") apikey : String ="48ed26ff242038147ce24450236a7ec2",
-
-        @Query("hash") hash: String = "f00af94ad24dd1d56b2ea26ae903030e",
-
-
+        @Query("apikey") apikey: String = "48ed26ff242038147ce24450236a7ec2",
+        @Query("hash") hash: String = "f00af94ad24dd1d56b2ea26ae903030e"
     ): Response<Chars>
 
-
+    @GET("characters")
+    suspend fun getAllMarvelChars(
+        @Query("offset") offset: Int,
+        @Query("limit") limit: Int,
+        @Query("ts") ts: String = "uce",
+        @Query("apikey") apikey: String = "48ed26ff242038147ce24450236a7ec2",
+        @Query("hash") hash: String = "f00af94ad24dd1d56b2ea26ae903030e"
+    ): Response<Chars>
 }

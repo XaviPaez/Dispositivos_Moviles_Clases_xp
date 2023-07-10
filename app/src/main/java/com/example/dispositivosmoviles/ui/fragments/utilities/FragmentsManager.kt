@@ -4,7 +4,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 
 class FragmentsManager {
-
     fun replaceFragmet(manager: FragmentManager, container: Int, fragment: Fragment) {
         with(manager.beginTransaction()) {
             replace(container, fragment)

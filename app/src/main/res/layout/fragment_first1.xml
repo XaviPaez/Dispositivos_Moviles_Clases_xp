@@ -45,8 +45,7 @@
         android:layout_width="354dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="14dp"
-        android:minHeight="48dp" />
+        android:layout_marginTop="14dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -54,26 +53,37 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="2dp"
         android:layout_marginRight="25dp"
-        android:layout_marginBottom="25dp">
+        android:layout_marginBottom="25dp"
+        android:orientation="vertical">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/rvSwipe"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvMarvelChars"
-            android:layout_width="365dp"
-            android:layout_height="522dp"
-            android:layout_margin="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner"
+        <EditText
+            android:id="@+id/txtFilter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:maxLines="1"
+            android:imeOptions="actionSearch"
+            android:singleLine="true"
+            ></EditText>
 
 
-            />
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/rvSwipe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvMarvelChars"
+                android:layout_width="365dp"
+                android:layout_height="522dp"
+                android:layout_margin="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner"
+                />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </LinearLayout>
 
 
