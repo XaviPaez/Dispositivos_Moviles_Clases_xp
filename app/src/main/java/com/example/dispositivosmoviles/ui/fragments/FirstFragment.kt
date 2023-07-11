@@ -20,6 +20,7 @@ import com.example.dispositivosmoviles.logic.jikanLogic.JikanAnimeLogic
 import com.example.dispositivosmoviles.logic.marvelLogic.MarvelLogic
 import com.example.dispositivosmoviles.ui.activities.DetailsMarvel
 import com.example.dispositivosmoviles.ui.adapters.MarvelAdapter
+import com.example.dispositivosmoviles.ui.fragments.utilities.DispositivosMoviles
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -48,7 +49,7 @@ class FirstFragment : Fragment() {
             false
         )
 
-        gManager=GridLayoutManager(requireActivity(),2)
+        gManager = GridLayoutManager(requireActivity(), 2)
         return binding.root
     }
 
@@ -62,9 +63,9 @@ class FirstFragment : Fragment() {
         val adapter = ArrayAdapter<String>(requireActivity(), R.layout.spinner_item_layout, names)
         binding.spinner.adapter = adapter
 
-        chargeDataRV()
+        chargeDataRVDB()
         binding.rvSwipe.setOnRefreshListener {
-            chargeDataRV()
+            chargeDataRVDB()
             binding.rvSwipe.isRefreshing = false
         }
 
@@ -84,9 +85,9 @@ class FirstFragment : Fragment() {
 
                     //necesitamos comprobar si el total es mayor igual que los elementos que han pasado entonces ncesitamos actualizar ya que estamos al final de la lista
                     if ((v + p) >= t) {
-                        chargeDataRV()
+                        chargeDataRVDB()
                         lifecycleScope.launch((Dispatchers.IO)) {
-                            val newItems = MarvelLogic().getAllMarvelChars(0,99)
+                            val newItems = MarvelLogic().getAllMarvelChars(0, 99)
                             withContext(Dispatchers.Main) {
                                 rvAdapter.updateListItems(newItems)
                             }
@@ -135,7 +136,7 @@ class FirstFragment : Fragment() {
             marvelCharsItems = withContext(Dispatchers.IO) {
 
 
-                return@withContext (MarvelLogic().getAllMarvelChars(0,99))
+                return@withContext (MarvelLogic().getAllMarvelChars(0, 99))
             }
 
 
@@ -149,6 +150,43 @@ class FirstFragment : Fragment() {
 
 
     }
+
+    fun chargeDataRVDB() {
+
+
+        lifecycleScope.launch(Dispatchers.Main) {
+
+            marvelCharsItems = withContext(Dispatchers.IO) {
+
+                var marvelCharsItems = MarvelLogic().getAllMarvel().toMutableList()
+
+                //DispositivosMoviles.getDbInstance().marvelDao()
+                //     .getAllCharacters().toMutableList()
+                //return@withContext (MarvelLogic().getAllMarvelChars(0,99))
+                if (marvelCharsItems.isEmpty()) {
+                    //   marvelCharsItems = withContext(Dispatchers.IO) {
+
+                    marvelCharsItems = (MarvelLogic().getAllMarvelChars(0, 99))
+                    //  return@withContext (MarvelLogic().getAllMarvelChars(0, 99))
+                    MarvelLogic().insertMarvelCharsDB(marvelCharsItems)
+                }
+
+                return@withContext marvelCharsItems
+            }
+
+            rvAdapter.items = marvelCharsItems
+
+            binding.rvMarvelChars.apply {
+                this.adapter = rvAdapter
+                this.layoutManager = gManager
+            }
+        }
+
+
+
+    }
+
+
 }
 
 

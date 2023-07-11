@@ -11,12 +11,13 @@ import android.widget.Toast
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.ActivityMainBinding
 import com.example.dispositivosmoviles.logic.validator.LoginValidator
+import com.example.dispositivosmoviles.ui.fragments.utilities.DispositivosMoviles
 import com.google.android.material.snackbar.Snackbar
 
 //esta clase hereda de AppCompatActivity
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var  binding : ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
     //reescribir la funcion onCreate que hereda de  AppCompactActivity
     @SuppressLint("MissingInflatedId")
@@ -31,38 +32,46 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         initClass()
+
+        val db = DispositivosMoviles.getDbInstance()
     }
 
     override fun onDestroy() {
         super.onDestroy()
+
+
     }
 
     @SuppressLint("ResourceAsColor")
     private fun initClass() {
         binding.btnIngresar.setOnClickListener {
 
-            val check= LoginValidator().checkLogin(
-                binding.editTextTextEmailAddress2.text.toString(), binding.editTextTextPassword.text.toString())
+            val check = LoginValidator().checkLogin(
+                binding.editTextTextEmailAddress2.text.toString(),
+                binding.editTextTextPassword.text.toString()
+            )
 
-            if(check ){
-                var intent = Intent(this,
-                    PrincipalActivity::class.java)
-                intent.putExtra("var1",binding.editTextTextEmailAddress2.text.toString()) //se pasa el nombre de la variable y valor
-                intent.putExtra("var2",11)
+            if (check) {
+                var intent = Intent(
+                    this,
+                    PrincipalActivity::class.java
+                )
+                intent.putExtra(
+                    "var1",
+                    binding.editTextTextEmailAddress2.text.toString()
+                ) //se pasa el nombre de la variable y valor
+                intent.putExtra("var2", 11)
                 startActivity(intent)
-            }else{
+            } else {
 
-                Snackbar.make(binding.btnIngresar,
+                Snackbar.make(
+                    binding.btnIngresar,
                     "Este es otro mensaje",
-                    Snackbar.LENGTH_LONG).setBackgroundTint(R.color.black).show()
+                    Snackbar.LENGTH_LONG
+                ).setBackgroundTint(R.color.black).show()
 
 
             }
-
-
-
-
-
 
 
         }
