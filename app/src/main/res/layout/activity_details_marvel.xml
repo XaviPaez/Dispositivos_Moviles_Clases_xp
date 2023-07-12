@@ -22,4 +22,9 @@
         android:textSize="16sp"
         android:textStyle="bold" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="62dp"
+        android:layout_height="62dp"
+        ></com.google.android.material.floatingactionbutton.FloatingActionButton>
+
 </LinearLayout>

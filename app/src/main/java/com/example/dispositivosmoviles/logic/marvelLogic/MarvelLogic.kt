@@ -1,6 +1,7 @@
 package com.example.dispositivosmoviles.logic.marvelLogic
 
 import android.util.Log
+import androidx.lifecycle.lifecycleScope
 import com.example.dispositivosmoviles.data.connections.ApiConnection
 import com.example.dispositivosmoviles.data.endpoints.MarvelEndpoint
 import com.example.dispositivosmoviles.data.entities.marvel.Characters.database.MarvelCharsBD
@@ -8,6 +9,11 @@ import com.example.dispositivosmoviles.data.entities.marvel.Characters.getMarvel
 import com.example.dispositivosmoviles.data.entities.marvel.MarvelChars
 import com.example.dispositivosmoviles.data.entities.marvel.getMarvelCharsDB
 import com.example.dispositivosmoviles.ui.fragments.utilities.DispositivosMoviles
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.lang.Exception
+import java.lang.RuntimeException
 
 class MarvelLogic {
 
@@ -50,7 +56,7 @@ class MarvelLogic {
         return itemList
     }
 
-    suspend fun getAllMarvel(): List<MarvelChars> {
+    suspend fun getAllMarvelCharDB(): List<MarvelChars> {
         var items: ArrayList<MarvelChars> = arrayListOf()
         val items_aux = DispositivosMoviles.getDbInstance().marvelDao().getAllCharacters()
         items_aux.forEach {
@@ -68,9 +74,9 @@ class MarvelLogic {
         return items
     }
 
-    suspend fun insertMarvelCharsDB(items: List<MarvelChars>){
+    suspend fun insertMarvelCharsDB(items: List<MarvelChars>) {
         var itemsDB = arrayListOf<MarvelCharsBD>()
-        items.forEach{
+        items.forEach {
             itemsDB.add(it.getMarvelCharsDB())
         }
 
@@ -80,4 +86,26 @@ class MarvelLogic {
             .insertMarvelChar(itemsDB)
 
     }
-}
+
+    suspend fun getInitChars(): MutableList<MarvelChars> {
+
+        var items = mutableListOf<MarvelChars>()
+        try {
+
+            items = MarvelLogic().getAllMarvelCharDB().toMutableList()
+
+
+            if (items.isEmpty()) {
+
+                items = (MarvelLogic().getAllMarvelChars(0, 99))
+                MarvelLogic().insertMarvelCharsDB(items)
+            }
+
+        } catch (ex: Exception) {
+            throw RuntimeException(ex.message)
+
+        }
+        return items
+
+
+    }}
