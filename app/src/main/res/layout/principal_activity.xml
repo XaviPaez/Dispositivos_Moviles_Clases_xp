@@ -8,6 +8,7 @@
     android:orientation="horizontal"
     tools:context=".ui.activities.PrincipalActivity">
 
+
     <FrameLayout
         android:id="@+id/frm_container"
         android:layout_width="match_parent"

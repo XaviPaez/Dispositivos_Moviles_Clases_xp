@@ -1,25 +1,31 @@
 package com.example.dispositivosmoviles.ui.activities
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.lifecycleScope
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.ActivityMainBinding
 import com.example.dispositivosmoviles.logic.validator.LoginValidator
 import com.example.dispositivosmoviles.ui.fragments.utilities.DispositivosMoviles
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.util.UUID
 
-//esta clase hereda de AppCompatActivity
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    //reescribir la funcion onCreate que hereda de  AppCompactActivity
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +58,14 @@ class MainActivity : AppCompatActivity() {
             )
 
             if (check) {
+
+                lifecycleScope.launch(Dispatchers.IO){
+                    saveDataStore(binding.editTextTextEmailAddress2.text.toString())
+
+                }
+
+
+
                 var intent = Intent(
                     this,
                     PrincipalActivity::class.java
@@ -68,11 +82,21 @@ class MainActivity : AppCompatActivity() {
                     binding.btnIngresar,
                     "Este es otro mensaje",
                     Snackbar.LENGTH_LONG
-                ).setBackgroundTint(R.color.black).show()
+                ).setBackgroundTint(R.color.black)
+                    .show()
 
 
             }
 
+
+        }
+    }
+
+    private suspend fun saveDataStore(stringData: String){
+        dataStore.edit {prefs->
+            prefs[stringPreferencesKey("usuario")]= stringData
+            prefs[stringPreferencesKey("session")]= UUID.randomUUID().toString()
+            prefs[stringPreferencesKey("email")]= "dispositivosmoviles@uce.edu.ec"
 
         }
     }

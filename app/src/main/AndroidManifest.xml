@@ -21,10 +21,10 @@
             android:name=".ui.activities.DetailsMarvel"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.MainActivity"
+            android:name=".ui.activities.PrincipalActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.PrincipalActivity"
+            android:name=".ui.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

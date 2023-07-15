@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.core.widget.addTextChangedListener
+import androidx.datastore.dataStore
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,10 +23,15 @@ import com.example.dispositivosmoviles.logic.jikanLogic.JikanAnimeLogic
 
 import com.example.dispositivosmoviles.logic.marvelLogic.MarvelLogic
 import com.example.dispositivosmoviles.ui.activities.DetailsMarvel
+import com.example.dispositivosmoviles.ui.activities.dataStore
 import com.example.dispositivosmoviles.ui.adapters.MarvelAdapter
+import com.example.dispositivosmoviles.ui.data.UserDataStore
 import com.example.dispositivosmoviles.ui.fragments.utilities.DispositivosMoviles
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -61,6 +68,17 @@ class FirstFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+
+        lifecycleScope.launch(Dispatchers.Main){
+            getDataStore().collect{ user ->
+                Log.d("UCE", user.email)
+                Log.d("UCE", user.name)
+                Log.d("UCE", user.session)
+
+            }
+        }
+
+
         val names = arrayListOf<String>(
             "Carlos", "Xavier", "Andres",
             "Pepe", "Mariano", "Rosa"
@@ -184,6 +202,7 @@ class FirstFragment : Fragment() {
 
 
 
+
     }
 
     fun chargeDataRVInit(offset: Int,limit: Int) {
@@ -252,6 +271,24 @@ class FirstFragment : Fragment() {
 
         }
     }
+
+    private fun getDataStore() =
+
+        requireActivity().dataStore.data.map {
+            // si no me devuelve nada me devuelve vacio, no  devuelve valor nos devuelve una lista de valores siempre que lo ejecutamos
+                prefs ->
+
+            UserDataStore(
+                name = prefs[stringPreferencesKey("usuario")].orEmpty(),
+                email = prefs[stringPreferencesKey("email")].orEmpty(),
+                session = prefs[stringPreferencesKey("session")].orEmpty()
+
+
+            )
+
+        }
+
+
 
 }
 
