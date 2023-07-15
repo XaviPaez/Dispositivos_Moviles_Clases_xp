@@ -39,7 +39,7 @@ class PrincipalActivity : AppCompatActivity() {
             name = it?.getString("var1")!!
         }*/
         Log.d("UCE", "Hola ${name}")
-        binding.txtName.text = "Bienvenido " + name.toString()
+
         Log.d("UCE", "Entrando a Start")
         initClass()
 
@@ -96,10 +96,6 @@ class PrincipalActivity : AppCompatActivity() {
     }
 
     private fun initClass() {
-        binding.botonRetorno.setOnClickListener {
-            //el primer parametro es un filtro para que muestre solo eso en la consola al filtar por el termino y el segundo el mensaje
-            var intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
+
     }
 }

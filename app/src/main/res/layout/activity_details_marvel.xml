@@ -6,25 +6,42 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.activities.DetailsMarvel">
-
-    <ImageView
-        android:id="@+id/imgMarvel"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_gravity="center" />
-
-    <TextView
-        android:id="@+id/txt_name"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="62dp"
-        android:layout_height="62dp"
-        ></com.google.android.material.floatingactionbutton.FloatingActionButton>
+        <ImageView
+            android:id="@+id/imgMarvel"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/txt_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_Favoritos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:clickable="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgMarvel"
+            app:srcCompat="@drawable/favorito" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
