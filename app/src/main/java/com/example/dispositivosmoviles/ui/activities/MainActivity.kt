@@ -4,10 +4,13 @@ import android.annotation.SuppressLint
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.speech.RecognizerIntent
 import android.util.Log
+import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.contract.ActivityResultContracts.*
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult.*
@@ -24,6 +27,7 @@ import com.example.dispositivosmoviles.ui.fragments.utilities.DispositivosMovile
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.Locale
 import java.util.UUID
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
@@ -54,7 +58,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    @SuppressLint("ResourceAsColor")
+    @SuppressLint("ResourceAsColor", "ResourceType")
     private fun initClass() {
         binding.btnIngresar.setOnClickListener {
 
@@ -65,11 +69,10 @@ class MainActivity : AppCompatActivity() {
 
             if (check) {
 
-                lifecycleScope.launch(Dispatchers.IO){
+                lifecycleScope.launch(Dispatchers.IO) {
                     saveDataStore(binding.editTextTextEmailAddress2.text.toString())
 
                 }
-
 
 
                 var intent = Intent(
@@ -95,50 +98,118 @@ class MainActivity : AppCompatActivity() {
             }
 
 
-
-
         }
         binding.btnTwitter.setOnClickListener {
 //            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://google.com.ec"))
 //            startActivity(intent)
-            val intent = Intent(Intent.ACTION_WEB_SEARCH
+            val intent = Intent(
+                Intent.ACTION_WEB_SEARCH
             )
-            intent.setClassName("com.google.android.googlequicksearchbox",
-                "com.google.android.googlequicksearchbox.SearchActivity")
+            intent.setClassName(
+                "com.google.android.googlequicksearchbox",
+                "com.google.android.googlequicksearchbox.SearchActivity"
+            )
             intent.putExtra(SearchManager.QUERY, "Liga de quito")
             startActivity(intent)
         }
 
-        val appResultLocal = registerForActivityResult(StartActivityForResult()){
+
+        val appResultLocal = registerForActivityResult(StartActivityForResult()) {
 
 
+                resultActivity ->
 
-            resultActivity ->
 
-            when(resultActivity.resultCode){
+            val sn = Snackbar.make(binding.textView, "", Snackbar.LENGTH_LONG)
+
+            var message = when (resultActivity.resultCode) {
+
                 RESULT_OK -> {
-                    Snackbar.make(binding.textView, "Resultado Exitoso", Snackbar.LENGTH_LONG).show()}
-                RESULT_CANCELED -> {
-                    Snackbar.make(binding.textView, "Resultado Fallido", Snackbar.LENGTH_LONG).show()
+
+                    sn.setBackgroundTint(resources.getColor(R.color.blue))
+                    resultActivity.data?.getStringExtra("result").orEmpty()
                 }
+
+                RESULT_CANCELED -> {
+                    sn.setBackgroundTint(resources.getColor(R.color.red))
+                    resultActivity.data?.getStringExtra("result").orEmpty()
+                }
+
                 else -> {
-                    Snackbar.make(binding.textView, "No tengo idea", Snackbar.LENGTH_LONG).show()}
+                    "Resultado Dudoso"
+                }
             }
-            }
+
+            sn.setText(message)
+            sn.show()
+        }
 
         binding.btnFacebook.setOnClickListener {
 
             val resIntent = Intent(this, ResultActivity::class.java)
             appResultLocal.launch(resIntent)
         }
+        val speechToText = registerForActivityResult(StartActivityForResult()) { activityResult ->
+            val sn = Snackbar.make(binding.textView, "", Snackbar.LENGTH_LONG)
+            var message = ""
+
+            when (activityResult.resultCode) {
+                RESULT_OK -> {
+                 val msg = activityResult.data?.
+                    getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)?.get(0).toString()
+
+                    if(msg.isNotEmpty()){
+                        val intent = Intent(
+                            Intent.ACTION_WEB_SEARCH
+                        )
+                        intent.setClassName(
+                            "com.google.android.googlequicksearchbox",
+                            "com.google.android.googlequicksearchbox.SearchActivity"
+                        )
+                        intent.putExtra(SearchManager.QUERY, msg)
+                        startActivity(intent)
+                    }
+                }
+                RESULT_CANCELED -> {
+                    message = "Proceso Cancelado"
+                    sn.setBackgroundTint(resources.getColor(R.color.red))
+                }
+
+                else -> {
+                    message = "Ocurrio un Error"
+                    sn.setBackgroundTint(resources.getColor(R.color.blue))
+                }
+            }
+            sn.setText(message)
+            sn.show()
+
+
+        }
+
+        binding.btnTwitter.setOnClickListener {
+            val intentSpeech = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+            intentSpeech.putExtra(
+                RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+            )
+            intentSpeech.putExtra(
+                RecognizerIntent.EXTRA_LANGUAGE,
+                Locale.getDefault()
+            )
+
+            intentSpeech.putExtra(RecognizerIntent.EXTRA_PROMPT,
+            "Di algo...")
+
+            speechToText.launch(intentSpeech)
+        }
 
     }
 
-    private suspend fun saveDataStore(stringData: String){
-        dataStore.edit {prefs->
-            prefs[stringPreferencesKey("usuario")]= stringData
-            prefs[stringPreferencesKey("session")]= UUID.randomUUID().toString()
-            prefs[stringPreferencesKey("email")]= "dispositivosmoviles@uce.edu.ec"
+    private suspend fun saveDataStore(stringData: String) {
+        dataStore.edit { prefs ->
+            prefs[stringPreferencesKey("usuario")] = stringData
+            prefs[stringPreferencesKey("session")] = UUID.randomUUID().toString()
+            prefs[stringPreferencesKey("email")] = "dispositivosmoviles@uce.edu.ec"
 
         }
     }

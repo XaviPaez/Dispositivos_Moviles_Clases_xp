@@ -21,13 +21,16 @@ class ResultActivity : AppCompatActivity() {
         super.onStart()
 
         binding.btnResultOk.setOnClickListener {
-
-            setResult(RESULT_OK)
+            val i = Intent()
+            i.putExtra("result", "Resultado exitoso")
+            setResult(RESULT_OK, i)
             finish()
         }
 
         binding.btnResultFalse.setOnClickListener {
-            setResult(RESULT_CANCELED)
+            val i = Intent()
+            i.putExtra("result", "Resultado Fallido")
+            setResult(RESULT_CANCELED, i)
             finish()
         }
     }
