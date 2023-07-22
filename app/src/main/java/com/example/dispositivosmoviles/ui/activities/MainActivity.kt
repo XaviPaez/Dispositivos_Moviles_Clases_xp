@@ -33,10 +33,9 @@ import java.util.UUID
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding
 
-    @SuppressLint("MissingInflatedId")
+    //reescribir la funcion onCreate que hereda de  AppCompactActivity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -49,29 +48,40 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         initClass()
 
-        val db = DispositivosMoviles.getDbInstance()
+        //val db = DispositivosMoviles.getDbInstance()
+
     }
 
     override fun onDestroy() {
         super.onDestroy()
-
-
     }
 
-    @SuppressLint("ResourceAsColor", "ResourceType")
+    @SuppressLint("ResourceType")
     private fun initClass() {
         binding.btnIngresar.setOnClickListener {
+            //binding.txtBuscar.text = "El codigo ejecuta correctamente"
+            //Toast.makeText(this,
+            //   "Este es un ejemplo",
+            //    Toast.LENGTH_SHORT)
+            //    .show()
 
+            /* var f=Snackbar.make(binding.boton1,
+                 "Este es otro mensaje",
+                 Snackbar.LENGTH_LONG)
+             //f.setBackgroundTint(R.color.black).show()
+             f.show()*/
             val check = LoginValidator().checkLogin(
                 binding.editTextTextEmailAddress2.text.toString(),
                 binding.editTextTextPassword.text.toString()
             )
-
             if (check) {
 
-                lifecycleScope.launch(Dispatchers.IO) {
-                    saveDataStore(binding.editTextTextEmailAddress2.text.toString())
+                //Se ejecuta mientras el proceso siguiente se sigue ejecutando
 
+                lifecycleScope.launch(Dispatchers.IO) {
+                    saveDataStore(
+                        binding.editTextTextEmailAddress2.text.toString()
+                    )
                 }
 
 
@@ -81,27 +91,28 @@ class MainActivity : AppCompatActivity() {
                 )
                 intent.putExtra(
                     "var1",
-                    binding.editTextTextEmailAddress2.text.toString()
+                    binding.editTextTextPassword.text.toString()
                 ) //se pasa el nombre de la variable y valor
                 intent.putExtra("var2", 11)
                 startActivity(intent)
+                //
             } else {
-
                 Snackbar.make(
-                    binding.btnIngresar,
-                    "Este es otro mensaje",
+                    binding.textView,
+                    "Usuario o contraseña invalidos",
                     Snackbar.LENGTH_LONG
-                ).setBackgroundTint(R.color.black)
-                    .show()
-
-
+                ).show()
             }
-
-
         }
+
         binding.btnTwitter.setOnClickListener {
-//            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://google.com.ec"))
-//            startActivity(intent)
+//            val intent = Intent(
+//                Intent.ACTION_VIEW,
+//
+//                // Uri.parse("geo:-0.2006288,-78.5786066")
+//                Uri.parse("tel:0123456789")
+//                //Uri.parse("https://developer.android.com/guide/components/intents-filters?hl=es-419")
+//            )
             val intent = Intent(
                 Intent.ACTION_WEB_SEARCH
             )
@@ -109,56 +120,67 @@ class MainActivity : AppCompatActivity() {
                 "com.google.android.googlequicksearchbox",
                 "com.google.android.googlequicksearchbox.SearchActivity"
             )
-            intent.putExtra(SearchManager.QUERY, "Liga de quito")
+            intent.putExtra(SearchManager.QUERY, "uce")
             startActivity(intent)
         }
 
+        //como parametro necesitamos
+        val appResultLocal = registerForActivityResult(StartActivityForResult()) { resultActivity ->
 
-        val appResultLocal = registerForActivityResult(StartActivityForResult()) {
+            val sn = Snackbar.make(
+                binding.textView,
+                " ",
+                Snackbar.LENGTH_LONG
+            )
+            var color: Int = resources.getColor(R.color.black)
+            var message =
+                when (resultActivity.resultCode) {
+                    RESULT_OK -> {
+
+                        sn.setBackgroundTint(resources.getColor(R.color.blue))
+                        resultActivity.data?.getStringExtra("result").orEmpty()
 
 
-                resultActivity ->
 
+                    }
 
-            val sn = Snackbar.make(binding.textView, "", Snackbar.LENGTH_LONG)
+                    RESULT_CANCELED -> {
+                        sn.setBackgroundTint(resources.getColor(R.color.red))
 
-            var message = when (resultActivity.resultCode) {
+                        resultActivity.data?.getStringExtra("result").orEmpty()
+                    }
 
-                RESULT_OK -> {
-
-                    sn.setBackgroundTint(resources.getColor(R.color.blue))
-                    resultActivity.data?.getStringExtra("result").orEmpty()
+                    else -> {
+                        "Dudoso"
+                    }
                 }
-
-                RESULT_CANCELED -> {
-                    sn.setBackgroundTint(resources.getColor(R.color.red))
-                    resultActivity.data?.getStringExtra("result").orEmpty()
-                }
-
-                else -> {
-                    "Resultado Dudoso"
-                }
-            }
-
             sn.setText(message)
             sn.show()
+
+
+
         }
 
-        binding.btnFacebook.setOnClickListener {
+        val speechToText = registerForActivityResult(StartActivityForResult()){activityResult ->
 
-            val resIntent = Intent(this, ResultActivity::class.java)
-            appResultLocal.launch(resIntent)
-        }
-        val speechToText = registerForActivityResult(StartActivityForResult()) { activityResult ->
-            val sn = Snackbar.make(binding.textView, "", Snackbar.LENGTH_LONG)
-            var message = ""
+            val sn = Snackbar.make(
+                binding.textView,
+                " ",
+                Snackbar.LENGTH_LONG
+            )
 
+            var message=""
             when (activityResult.resultCode) {
-                RESULT_OK -> {
-                 val msg = activityResult.data?.
-                    getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)?.get(0).toString()
+
+                RESULT_OK ->
+                {
+
+
+                    val  msg = activityResult.data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)?.get(0).toString()
+
 
                     if(msg.isNotEmpty()){
+
                         val intent = Intent(
                             Intent.ACTION_WEB_SEARCH
                         )
@@ -168,48 +190,63 @@ class MainActivity : AppCompatActivity() {
                         )
                         intent.putExtra(SearchManager.QUERY, msg)
                         startActivity(intent)
+
                     }
                 }
-                RESULT_CANCELED -> {
+                RESULT_CANCELED-> {
                     message = "Proceso Cancelado"
                     sn.setBackgroundTint(resources.getColor(R.color.red))
+
                 }
 
                 else -> {
-                    message = "Ocurrio un Error"
-                    sn.setBackgroundTint(resources.getColor(R.color.blue))
+                    message= "Ocurrio"
+
+                    sn.setBackgroundTint(resources.getColor(R.color.red))
+
                 }
+
             }
+
             sn.setText(message)
             sn.show()
-
 
         }
 
         binding.btnTwitter.setOnClickListener {
-            val intentSpeech = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+            val intentSpeech = Intent( RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+
             intentSpeech.putExtra(
                 RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
             )
+
             intentSpeech.putExtra(
+
                 RecognizerIntent.EXTRA_LANGUAGE,
                 Locale.getDefault()
             )
 
-            intentSpeech.putExtra(RecognizerIntent.EXTRA_PROMPT,
-            "Di algo...")
+
+            intentSpeech.putExtra(RecognizerIntent.EXTRA_PROMPT, "Di algo...")
 
             speechToText.launch(intentSpeech)
+
         }
+
+
+
 
     }
 
+
     private suspend fun saveDataStore(stringData: String) {
         dataStore.edit { prefs ->
+            //Se puede guardar varios datos como string, boolean, integer , etc
             prefs[stringPreferencesKey("usuario")] = stringData
             prefs[stringPreferencesKey("session")] = UUID.randomUUID().toString()
-            prefs[stringPreferencesKey("email")] = "dispositivosmoviles@uce.edu.ec"
+            prefs[stringPreferencesKey("email")] = "dispositivosmoviles@ucce.edu.ec"
+
 
         }
     }
