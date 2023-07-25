@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.location.Geocoder
+import android.location.Location
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -27,6 +28,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.ActivityMainBinding
 import com.example.dispositivosmoviles.logic.validator.LoginValidator
+import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -38,7 +40,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.Locale
 import java.util.UUID
-import java.util.jar.Manifest
+
 
 //datastore de tipo preference, "name" es el nombre de la mini base de datos de clave y valor
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
@@ -48,6 +50,11 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+
+    private lateinit var locationRequest: LocationRequest
+    private lateinit var locationCallback: LocationCallback
+
+    private var currentLocation: Location? = null
     val speechToText =
         registerForActivityResult(StartActivityForResult()) { activityResult ->
 
@@ -103,8 +110,74 @@ class MainActivity : AppCompatActivity() {
 
 
         }
-    private lateinit var locationRequest : LocationRequest
-    private lateinit var locationCallback : LocationCallback
+
+    @SuppressLint("MissingPermission")
+    val locationContract = registerForActivityResult(RequestPermission()) { isGranted ->
+        when (isGranted) {
+            true -> {
+                val task = fusedLocationProviderClient.lastLocation
+//                    fusedLocationProviderClient.lastLocation.addOnSuccessListener {
+//                        it.latitude
+//                        it.longitude
+//                        val a =Geocoder(this)
+//                        a.getFromLocation(it.latitude,it.longitude,1)
+                task.addOnSuccessListener { location ->
+
+                    val alert = AlertDialog.Builder(
+                        this
+                    )
+                    alert.apply {
+                        setTitle("Alerta")
+                        setMessage("Existe un problema con el sistema de posicionamiento global en el sistema de tu telefono")
+                        setPositiveButton("OK") { dialog, id ->
+
+                            dialog.dismiss()
+                        }
+                        setNegativeButton("Cancelar"){ dialog, id ->
+                            dialog.dismiss()
+                        }
+                        setCancelable(false)
+                    }.create()
+
+                    alert.show()
+
+                    //actualizar la localizacion
+                    fusedLocationProviderClient.requestLocationUpdates(
+                        locationRequest,
+                        locationCallback,
+                        Looper.getMainLooper()
+                    )
+
+
+                }
+
+                task.addOnFailureListener {
+
+                }
+
+
+            }
+
+            shouldShowRequestPermissionRationale(
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) -> {
+                Snackbar.make(
+                    binding.textView,
+                    "Ayude con el permiso porfa",
+                    Snackbar.LENGTH_LONG
+                ).show()
+            }
+
+            false -> {
+                Snackbar.make(
+                    binding.textView,
+                    "Denegado",
+                    Snackbar.LENGTH_LONG
+                ).show()
+            }
+
+        }
+    }
 
     //reescribir la funcion onCreate que hereda de  AppCompactActivity
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -114,22 +187,29 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+        locationRequest = LocationRequest.Builder(
+            Priority.PRIORITY_HIGH_ACCURACY, //tipo de localizacion
+            2000
+        )//intervalo de actualizacion
+            // .setMaxUpdates(3) //cuantas veces vamos a solicitar la ubicacion
+            .build()
 
-        locationRequest = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY
-        ,1000).build()
-
+        //clase abstracta no se puede instanciar, se esta heredando a la variable los metodos que tiene
         locationCallback = object : LocationCallback() {
-            override fun onLocationResult(locationResult : LocationResult) {
+
+            override fun onLocationResult(locationResult: LocationResult) {
                 super.onLocationResult(locationResult)
-                if(locationResult != null){
-                    locationResult.locations.forEach{location ->
-                        Log.d("UCE", "Ubicacion: ${location.latitude}, " +
-                        "${location.longitude}")
+
+                if (locationResult != null) {
+
+                    locationResult.locations.forEach { location ->
+                        currentLocation = location
+                        Log.d("UCE", "Ubicacion: ${location.latitude}, ${location.longitude}")
+
                     }
                 }
             }
         }
-
     }
 
     override fun onStart() {
@@ -149,7 +229,6 @@ class MainActivity : AppCompatActivity() {
         fusedLocationProviderClient.removeLocationUpdates(locationCallback)
     }
 
-    @SuppressLint("ResourceType", "MissingPermission")
     private fun initClass() {
         binding.btnIngresar.setOnClickListener {
             //binding.txtBuscar.text = "El codigo ejecuta correctamente"
@@ -195,74 +274,6 @@ class MainActivity : AppCompatActivity() {
                     "Usuario o contraseña invalidos",
                     Snackbar.LENGTH_LONG
                 ).show()
-            }
-        }
-
-        val locationContract = registerForActivityResult(RequestPermission()) { isGranted ->
-            when (isGranted) {
-                true -> {
-                    val task = fusedLocationProviderClient.lastLocation
-
-                    task.addOnSuccessListener {
-                        val alert = AlertDialog.Builder(this)
-                        alert.apply {
-                            setTitle("Alerta")
-                            setMessage("Existe un problema con el sistema de posicionamiento global en el sistema")
-                            setPositiveButton("Ok") {
-                                    dialog, id -> dialog.dismiss()
-                            }
-                        }.create()
-                        alert.show()
-
-                        fusedLocationProviderClient.requestLocationUpdates(
-                            locationRequest,
-                            locationCallback,
-                            Looper.getMainLooper()
-                        )
-
-
-
-//                        if (task.result != null) {
-//                            Snackbar.make(
-//                                binding.textView,
-//                                "${it.latitude}, ${it.longitude}",
-//                                Snackbar.LENGTH_LONG
-//                            ).show()
-//                        } else {
-//                            Snackbar.make(
-//                                binding.textView,
-//                                "Encienda el gps por favor",
-//                                Snackbar.LENGTH_LONG
-//                            ).show()
-//                        }
-                    }
-                    task.addOnFailureListener{
-
-
-
-                    }
-
-
-                }
-
-                shouldShowRequestPermissionRationale(
-                    android.Manifest.permission.ACCESS_FINE_LOCATION
-                ) -> {
-                    Snackbar.make(
-                        binding.textView,
-                        "Ayude con el permiso porfa",
-                        Snackbar.LENGTH_LONG
-                    ).show()
-                }
-
-                false -> {
-                    Snackbar.make(
-                        binding.textView,
-                        "Denegado",
-                        Snackbar.LENGTH_LONG
-                    ).show()
-                }
-
             }
         }
 
