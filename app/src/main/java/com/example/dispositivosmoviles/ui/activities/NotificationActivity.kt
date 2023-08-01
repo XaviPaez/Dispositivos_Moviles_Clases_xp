@@ -1,16 +1,22 @@
 package com.example.dispositivosmoviles.ui.activities
 
 import android.annotation.SuppressLint
+import android.app.AlarmManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.ActivityNotificationBinding
+import com.example.dispositivosmoviles.utilities.BroadcasterNotification
+import java.util.Calendar
 
 class NotificationActivity : AppCompatActivity() {
 
@@ -25,6 +31,37 @@ class NotificationActivity : AppCompatActivity() {
            createNotificationChannel()
             sendNotification()
         }
+
+        binding.btnNotificationProgramada.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            val hora = binding.timePicker.hour
+            val minute = binding.timePicker.minute
+
+            Toast.makeText(this, "La hora se activara a las: $hora:$minute", Toast.LENGTH_SHORT).show()
+
+            calendar.set(Calendar.HOUR, hora)
+            calendar.set(Calendar.MINUTE, minute)
+            calendar.set(Calendar.SECOND, 0)
+
+             sendNotificationTimePicker(calendar.timeInMillis)
+
+
+
+        }
+    }
+
+    private fun sendNotificationTimePicker(time: Long) {
+
+        val myIntent = Intent(applicationContext, BroadcasterNotification:: class.java)
+        val myPendingIntent = PendingIntent.getBroadcast(
+            applicationContext,
+            0,
+            myIntent,
+        PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP , time , myPendingIntent)
+
     }
 
     val CHANNEL : String = "Notificaciones"
