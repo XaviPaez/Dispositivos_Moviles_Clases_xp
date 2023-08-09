@@ -15,6 +15,7 @@ import android.os.Looper
 import android.provider.Settings
 import android.speech.RecognizerIntent
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts.*
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult.*
 import androidx.appcompat.app.AlertDialog
@@ -39,7 +40,11 @@ import com.google.android.gms.location.LocationSettingsRequest
 import com.google.android.gms.location.LocationSettingsStatusCodes
 import com.google.android.gms.location.Priority
 import com.google.android.gms.location.SettingsClient
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.Locale
@@ -58,6 +63,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var locationCallback: LocationCallback
     private lateinit var  client: SettingsClient
     private lateinit var locationSettingsRequest:LocationSettingsRequest
+    private  lateinit var auth : FirebaseAuth
+    private val TAG = "UCE"
 
     private var currentLocation: Location? = null
     val speechToText =
@@ -164,68 +171,24 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
-//                val alert = AlertDialog.Builder(this).apply {
-//                    setTitle("Notificacion")
-//                    setMessage("Por favor verifique que el GPS esta activo")
-//                    setPositiveButton("Verificar"){dialog, id ->
-//                        val i = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-//                        startActivity(i)
-//                        dialog.dismiss()
-//                    }
-//                    setCancelable(false)
-//                }.show()
-//                    fusedLocationProviderClient.lastLocation.addOnSuccessListener {
-//                        it.latitude
-//                        it.longitude
-//                        val a = Geocoder(this)
-//                        a.getFromLocation(it.latitude,it.longitude,1)
-//
-//
-//                    val alert = AlertDialog.Builder(
-//                        this
-//                    )
-//                    alert.apply {
-//                        setTitle("Alerta")
-//                        setMessage("Existe un problema con el sistema de posicionamiento global en el sistema de tu telefono")
-//                        setPositiveButton("OK") { dialog, id ->
-//
-//                            dialog.dismiss()
-//                        }
-//                        setNegativeButton("Cancelar"){ dialog, id ->
-//                            dialog.dismiss()
-//                        }
-//                        setCancelable(false)
-//                    }.create()
-//
-////                    alert.show()
-//
-//                    //actualizar la localizacion
-//
-//
-//                }
-//
-//
-//
-//
-//            }
-//
-//            shouldShowRequestPermissionRationale(
-//                android.Manifest.permission.ACCESS_FINE_LOCATION
-//            ) -> {
-//                Snackbar.make(
-//                    binding.textView,
-//                    "Ayude con el permiso porfa",
-//                    Snackbar.LENGTH_LONG
-//                ).show()
-
-
-    //reescribir la funcion onCreate que hereda de  AppCompactActivity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        auth = Firebase.auth
+
+        binding.btnIngresar.setOnClickListener {
+            signInWithEmailAndPassword(
+                binding.editTextTextEmailAddress2.text.toString(),
+                binding.editTextTextPassword.text.toString()
+
+            )
+        }
+
+
+
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
@@ -256,11 +219,77 @@ class MainActivity : AppCompatActivity() {
         locationSettingsRequest = LocationSettingsRequest.Builder().addLocationRequest(locationRequest).build()
     }
 
+    private fun authWithFirebaseEmail(email: String, password: String){
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(Constants.TAG, "createUserWithEmail:success")
+                    val user = auth.currentUser
+                    Log.w(Constants.TAG, "createUserWithEmail:failure", task.exception)
+                    Toast.makeText(
+                        baseContext,
+                        "Authentication succes.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(Constants.TAG, "createUserWithEmail:failure", task.exception)
+                    Toast.makeText(
+                        baseContext,
+                        "Authentication failed.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+
+                }
+            }
+    }
+
+    private fun signInWithEmailAndPassword(email: String, password:String){
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(TAG, "signInWithEmail:success")
+                    val user = auth.currentUser
+                    
+                    startActivity(Intent(this, BiometricActivity::class.java))
+
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(TAG, "signInWithEmail:failure", task.exception)
+                    Toast.makeText(
+                        baseContext,
+                        "Authentication failed.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+
+                }
+            }
+    }
+
+    private fun recoveryPasswordWithEmail(email: String){
+
+        auth.sendPasswordResetEmail(email)
+            .addOnCompleteListener{ task ->
+                if(task.isSuccessful){
+                    Toast.makeText(this, "Correo de recuperacion enviado correctamente"
+                    , Toast.LENGTH_SHORT).show()
+                    MaterialAlertDialogBuilder(this).apply {
+                        setTitle("Alerta")
+                        setMessage("Correo de recuperacion enviado correctamente")
+                        setCancelable(true)
+                    }
+                }
+
+            }
+    }
+
     override fun onStart() {
         super.onStart()
         initClass()
 
-        //val db = DispositivosMoviles.getDbInstance()
 
     }
 
@@ -274,52 +303,42 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initClass() {
-        binding.btnIngresar.setOnClickListener {
-            //binding.txtBuscar.text = "El codigo ejecuta correctamente"
-            //Toast.makeText(this,
-            //   "Este es un ejemplo",
-            //    Toast.LENGTH_SHORT)
-            //    .show()
-
-            /* var f=Snackbar.make(binding.boton1,
-                 "Este es otro mensaje",
-                 Snackbar.LENGTH_LONG)
-             //f.setBackgroundTint(R.color.black).show()
-             f.show()*/
-            val check = LoginValidator().checkLogin(
-                binding.editTextTextEmailAddress2.text.toString(),
-                binding.editTextTextPassword.text.toString()
-            )
-            if (check) {
-
-                //Se ejecuta mientras el proceso siguiente se sigue ejecutando
-
-                lifecycleScope.launch(Dispatchers.IO) {
-                    saveDataStore(
-                        binding.editTextTextEmailAddress2.text.toString()
-                    )
-                }
-
-
-                var intent = Intent(
-                    this,
-                    PrincipalActivity::class.java
-                )
-                intent.putExtra(
-                    "var1",
-                    binding.editTextTextPassword.text.toString()
-                ) //se pasa el nombre de la variable y valor
-                intent.putExtra("var2", 11)
-                startActivity(intent)
-                //
-            } else {
-                Snackbar.make(
-                    binding.textView,
-                    "Usuario o contraseña invalidos",
-                    Snackbar.LENGTH_LONG
-                ).show()
-            }
-        }
+//        binding.btnIngresar.setOnClickListener {
+//
+//            val check = LoginValidator().checkLogin(
+//                binding.editTextTextEmailAddress2.text.toString(),
+//                binding.editTextTextPassword.text.toString()
+//            )
+//            if (check) {
+//
+//                //Se ejecuta mientras el proceso siguiente se sigue ejecutando
+//
+//                lifecycleScope.launch(Dispatchers.IO) {
+//                    saveDataStore(
+//                        binding.editTextTextEmailAddress2.text.toString()
+//                    )
+//                }
+//
+//
+//                var intent = Intent(
+//                    this,
+//                    PrincipalActivity::class.java
+//                )
+//                intent.putExtra(
+//                    "var1",
+//                    binding.editTextTextPassword.text.toString()
+//                ) //se pasa el nombre de la variable y valor
+//                intent.putExtra("var2", 11)
+//                startActivity(intent)
+//                //
+//            } else {
+//                Snackbar.make(
+//                    binding.textView,
+//                    "Usuario o contraseña invalidos",
+//                    Snackbar.LENGTH_LONG
+//                ).show()
+//            }
+//        }
 
         binding.btnTwitter.setOnClickListener {
             locationContract.launch(android.Manifest.permission.ACCESS_FINE_LOCATION)
