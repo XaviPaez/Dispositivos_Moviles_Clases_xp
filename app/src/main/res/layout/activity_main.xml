@@ -1,210 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo_si"
+    android:orientation="vertical"
     tools:context=".ui.activities.MainActivity">
 
-    <EditText
-        android:id="@+id/editTextTextPassword"
-        android:layout_width="233dp"
-        android:layout_height="59dp"
-        android:ems="10"
-        android:hint="Contraseña"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contraseña"
-        tools:ignore="MissingConstraints" />
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="161dp"
+        android:layout_height="149dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:scaleY="0.75"
+        android:src="@drawable/dona" />
 
-    <Button
-        android:id="@+id/btnIngresar"
-
-        style="@style/btnIngresar"
+    <TextView
+        android:id="@+id/titulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Ingresar"
-        app:cornerRadius="25px"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
-        tools:ignore="MissingConstraints" />
+        android:layout_gravity="center_horizontal"
+        android:gravity="left|center_vertical"
+        android:text="LOS SIMPSONS"
+        android:fontFamily="@font/akbar"
+        android:textColor="@color/yellow"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/label_saludo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/akbar"
+        android:text="Bienvenidos a Simpsomania"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/label_correo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="54dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/akbar"
+        android:text="Correo:"
+        android:textColor="#21FFD3" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress2"
-        android:layout_width="232dp"
-        android:layout_height="53dp"
+        android:id="@+id/text_email"
+        android:layout_width="289dp"
+        android:layout_height="49dp"
+        android:fontFamily="@font/akbar"
+        android:layout_marginStart="54dp"
         android:ems="10"
-        android:hint="E-mail"
+        android:hint="example@email.com"
         android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/correo"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="151dp"
-        android:layout_height="136dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_edi"
-        tools:ignore="MissingConstraints" />
+        android:textColorHint="#FFFFFF" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="211dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="180dp"
-        android:fontFamily="@font/roboto"
-        android:text="Pedidos Online"
-        android:textColor="@color/black"
-        android:textSize="70px"
+        android:id="@+id/label_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/akbar"
+        android:layout_marginStart="54dp"
+        android:text="Contraseña:"
+        android:textColor="#21FFD3"
+        android:translationX="-4dp" />
+
+    <EditText
+        android:id="@+id/text_password"
+        android:layout_width="289dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="54dp"
+        android:fontFamily="@font/akbar"
+        android:ems="10"
+        android:hint="password"
+        android:inputType="textPassword"
+        android:textColorHint="#FFFFFF" />
+
+    <Button
+        android:id="@+id/btn_ingresar"
+        android:layout_width="289dp"
+        android:layout_height="49dp"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/akbar"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#17CDA9"
+        android:text="Ingresar"
+        android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="34dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="376dp"
-        android:translationX="10dp"
-        android:translationY="-5dp"
-        app:layout_constraintStart_toEndOf="@+id/editTextTextPassword"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/visibility48px" />
-
-    <Button
-        android:id="@+id/btnTwitter"
-        style="@style/btnTwitter"
-        android:layout_width="126dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="16dp"
-        android:text="Twitter"
-        android:textAlignment="textEnd"
-        app:cornerRadius="25px"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/btnFacebook"
-        style="@style/btnFacebook"
-        android:layout_width="146dp"
-        android:layout_height="57dp"
-        android:layout_marginStart="153dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:text="Facebook"
-        android:textAlignment="textEnd"
-        android:textSize="14dp"
-        app:cornerRadius="25px"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/btnTwitter"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/btnRegistrar"
-        style="@style/btnRegistrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="56dp"
-        android:text="Registrarse"
-        app:cornerRadius="25px"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnFacebook"
-        tools:ignore="MissingConstraints" />
+        app:cornerRadius="25px" />
 
     <TextView
-        android:id="@+id/textView2"
-       android:textColor="@color/black"
+        android:id="@+id/label_opciones"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="28dp"
-        android:text="¿Olvido su contraseña?"
-        app:cornerRadius="25px"
-        app:layout_constraintEnd_toStartOf="@+id/btnRegistrar"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTwitter" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:textColor="@color/black"
-        android:text="¡Hola! Es bueno verte nuevamente"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.054" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:textColor="@color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
+        android:fontFamily="@font/akbar"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="12dp"
-        android:text="O conectese usando redes sociales"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnIngresar" />
+        android:text="O conéctese usando las redes sociales"
+        android:textColor="#FFFFFF" />
 
-    <TextView
-        android:id="@+id/correo"
-        style="@style/correo"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnTwitter"
+            android:layout_width="135dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="14dp"
+            android:fontFamily="@font/akbar"
+            android:backgroundTint="#1DA1F2"
+            android:gravity="right|center_vertical"
+            android:text="Twitter"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:cornerRadius="25px" />
+
+        <Button
+            android:id="@+id/btnResult"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="64dp"
+            android:backgroundTint="#1877F2"
+            android:fontFamily="@font/akbar"
+            android:gravity="right|center_vertical"
+            android:text="Facebook"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:cornerRadius="25px" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:text="Correo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/contraseña"
-        style="@style/contraseña"
+        <TextView
+            android:id="@+id/registro"
+            android:layout_width="wrap_content"
+            android:fontFamily="@font/akbar"
+            android:layout_height="wrap_content"
+            android:text="Regístrese"
+            android:textColor="#21FFD3" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="44dp"
+            android:text="Olvido su contraseña?"
+            android:textColor="#FFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnTwitter" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnHuella"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:text="Contraseña"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress2" />
+        android:layout_height="48dp"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/akbar"
+        android:layout_gravity="center_horizontal"
+        android:text="Ingresar con Huella"
+        android:backgroundTint="#F3932C"></Button>
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="252dp"
-        android:layout_marginTop="28dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:srcCompat="@drawable/facebook" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="28dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:srcCompat="@drawable/twitter" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:name=".ui.fragments.utilities.DispositivosMoviles"
@@ -21,6 +22,15 @@
         android:theme="@style/Theme.DispositivosMoviles"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.activities.RegistroActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.PrincipalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.BiometricActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.activities.ProgressActivity"
             android:exported="false" />
@@ -41,7 +51,10 @@
             android:name=".ui.activities.CameraActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.BiometricActivity"
+            android:name=".ui.activities.DetailsSimpsons"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.SimpsonsActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activities.ResultActivity"
@@ -50,7 +63,7 @@
             android:name=".ui.activities.DetailsMarvel"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.PrincipalActivity"
+            android:name=".ui.activities.menuApp"
             android:exported="false" />
         <activity
             android:name=".ui.activities.MainActivity"

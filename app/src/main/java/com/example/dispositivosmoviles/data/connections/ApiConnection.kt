@@ -9,11 +9,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 object ApiConnection {
 
     enum class typeApi {
-        Jikan, Marvel
+        Jikan, Marvel, Simpsons
     }
 
     private val API_JIKAN = "https://api.jikan.moe/v4/"
     private val API_MARVEL = "https://gateway.marvel.com/v1/public/"
+    private val API_SIMPSONS = "https://apisimpsons.fly.dev/api/"
 
     private fun getConnnection(base: String): Retrofit {
         var retrofit = Retrofit.Builder()
@@ -35,6 +36,11 @@ object ApiConnection {
 
             typeApi.Marvel.name -> {
                 BASE = API_MARVEL
+
+
+            }
+            typeApi.Simpsons.name -> {
+                BASE = API_SIMPSONS
 
 
             }

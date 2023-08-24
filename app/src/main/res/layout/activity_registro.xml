@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo_dona"
+    android:orientation="vertical"
+    tools:context=".ui.activities.MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="225dp"
+        android:layout_height="253dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:scaleY="0.75"
+        android:src="@drawable/dona" />
+
+    <TextView
+        android:id="@+id/titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="left|center_vertical"
+        android:fontFamily="@font/akbar"
+        android:text="Registrate"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/label_saludo"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/akbar"
+        android:layout_gravity="center_horizontal"
+        android:text="Ingrese su correo y su contraseña para registrarse"
+        android:layout_marginTop="24dp"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/label_correo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/akbar"
+        android:layout_marginStart="54dp"
+        android:layout_marginTop="18dp"
+        android:text="Correo:"
+        android:textColor="#21FFD3" />
+
+    <EditText
+        android:id="@+id/text_email"
+        android:layout_width="289dp"
+        android:layout_height="49dp"
+        android:fontFamily="@font/akbar"
+        android:layout_marginStart="54dp"
+        android:background="#C8333232"
+        android:ems="10"
+        android:hint="example@email.com"
+        android:inputType="textEmailAddress"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#FFFFFF"/>
+
+    <TextView
+        android:id="@+id/label_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/akbar"
+        android:layout_marginStart="54dp"
+        android:layout_marginTop="18dp"
+        android:text="Contraseña:"
+        android:textColor="#21FFD3"
+        android:translationX="-4dp" />
+
+    <EditText
+        android:id="@+id/text_password"
+        android:layout_width="289dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="54dp"
+        android:fontFamily="@font/akbar"
+        android:background="#C8333232"
+        android:ems="10"
+        android:hint="password"
+        android:inputType="textPassword"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#FFFFFF"/>
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="289dp"
+        android:layout_height="49dp"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/akbar"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="#17CDA9"
+        android:text="Registrarse"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:cornerRadius="25px" />
+
+
+</LinearLayout>

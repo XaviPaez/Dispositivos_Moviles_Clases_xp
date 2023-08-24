@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.activities.DetailsMarvel">
+    tools:context=".ui.activities.DetailsSimpsons">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imgMarvel"
+            android:id="@+id/imgSimpsons"
             android:layout_width="250dp"
             android:layout_height="250dp"
             android:layout_gravity="center"
@@ -22,9 +22,9 @@
 
         <TextView
             android:id="@+id/txt_name"
+            android:fontFamily="@font/akbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/akbar"
             android:gravity="center"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -36,14 +36,25 @@
             android:id="@+id/btn_Favoritos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/akbar"
             android:layout_marginTop="24dp"
             android:clickable="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgMarvel"
+            app:layout_constraintTop_toBottomOf="@+id/imgSimpsons"
             app:srcCompat="@drawable/favorito" />
 
+        <TextView
+            android:id="@+id/txt_historia"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/akbar"
+            android:layout_marginTop="428dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

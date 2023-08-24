@@ -180,11 +180,28 @@ class MainActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         binding.btnIngresar.setOnClickListener {
-            signInWithEmailAndPassword(
-                binding.editTextTextEmailAddress2.text.toString(),
-                binding.editTextTextPassword.text.toString()
 
-            )
+            if(binding.textEmail.text.toString().isNotEmpty() && binding.textEmail.text.toString().isNotEmpty()){
+                signInWithEmailAndPassword(
+                    binding.textEmail.text.toString(),
+                    binding.textPassword.text.toString()
+
+                )
+                startActivity(Intent(this,menuApp::class.java))
+            }else{
+                Toast.makeText(
+                    baseContext,
+                    "Campos vacios, ingrese su correo y contraseña",
+                    Toast.LENGTH_SHORT,
+                ).show()
+            }
+
+
+
+        }
+        binding.registro.setOnClickListener {
+            startActivity(Intent(this,RegistroActivity::class.java))
+
         }
 
 
@@ -303,61 +320,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initClass() {
-//        binding.btnIngresar.setOnClickListener {
-//
-//            val check = LoginValidator().checkLogin(
-//                binding.editTextTextEmailAddress2.text.toString(),
-//                binding.editTextTextPassword.text.toString()
-//            )
-//            if (check) {
-//
-//                //Se ejecuta mientras el proceso siguiente se sigue ejecutando
-//
-//                lifecycleScope.launch(Dispatchers.IO) {
-//                    saveDataStore(
-//                        binding.editTextTextEmailAddress2.text.toString()
-//                    )
-//                }
-//
-//
-//                var intent = Intent(
-//                    this,
-//                    PrincipalActivity::class.java
-//                )
-//                intent.putExtra(
-//                    "var1",
-//                    binding.editTextTextPassword.text.toString()
-//                ) //se pasa el nombre de la variable y valor
-//                intent.putExtra("var2", 11)
-//                startActivity(intent)
-//                //
-//            } else {
-//                Snackbar.make(
-//                    binding.textView,
-//                    "Usuario o contraseña invalidos",
-//                    Snackbar.LENGTH_LONG
-//                ).show()
-//            }
-//        }
+
 
         binding.btnTwitter.setOnClickListener {
             locationContract.launch(android.Manifest.permission.ACCESS_FINE_LOCATION)
-//            val intent = Intent(
-//                Intent.ACTION_VIEW,
-//
-//                // Uri.parse("geo:-0.2006288,-78.5786066")
-//                Uri.parse("tel:0123456789")
-//                //Uri.parse("https://developer.android.com/guide/components/intents-filters?hl=es-419")
-//            )
-//            val intent = Intent(
-//                Intent.ACTION_WEB_SEARCH
-//            )
-//            intent.setClassName(
-//                "com.google.android.googlequicksearchbox",
-//                "com.google.android.googlequicksearchbox.SearchActivity"
-//            )
-//            intent.putExtra(SearchManager.QUERY, "uce")
-//            startActivity(intent)
+
+
+
+        }
+        binding.btnHuella.setOnClickListener{
+            val intent=Intent(this@MainActivity , BiometricActivity::class.java)
+            startActivity(intent)
         }
 
         //como parametro necesitamos
@@ -399,7 +372,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        binding.btnFacebook.setOnClickListener {
+        binding.btnResult.setOnClickListener {
             val intentSpeech = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
 
             intentSpeech.putExtra(

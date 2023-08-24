@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/fondo_homero"
+
     android:layout_height="match_parent"
     tools:context=".ui.activities.BiometricActivity">
 
@@ -23,6 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:gravity="center"
+            android:fontFamily="@font/akbar"
             android:text="Autenticacion biometrica"
             android:textColor="@color/black"
             android:textSize="42sp"

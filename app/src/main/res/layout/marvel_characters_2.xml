@@ -6,8 +6,8 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="170dp"
-        android:layout_height="280dp"
+        android:layout_width="173dp"
+        android:layout_height="350dp"
         android:layout_margin="25dp"
         app:cardCornerRadius="40dp"
         app:cardElevation="10dp"
@@ -19,13 +19,16 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/color_background_2">
+            android:background="@drawable/diagram_backgorund">
 
             <ImageView
                 android:id="@+id/imgMarvel"
-                android:layout_width="125dp"
+                android:layout_width="match_parent"
                 android:layout_height="125dp"
                 android:layout_margin="20dp"
+                android:layout_marginTop="16dp"
+                android:foregroundGravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

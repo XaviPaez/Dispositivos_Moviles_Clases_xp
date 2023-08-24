@@ -64,7 +64,7 @@ class BiometricActivity : AppCompatActivity() {
 
                     override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                         super.onAuthenticationSucceeded(result)
-                        val intent=Intent(this@BiometricActivity, PrincipalActivity::class.java)
+                        val intent=Intent(this@BiometricActivity, menuApp::class.java)
                         startActivity(intent)
                     }
 

@@ -1,0 +1,51 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo_menu"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <Button
+        android:id="@+id/btn_camara"
+        android:layout_width="wrap_content"
+        android:fontFamily="@font/akbar"
+        android:backgroundTint="@color/background_dm"
+        android:layout_height="wrap_content"
+        android:text="Camara"
+        android:drawableLeft="@drawable/ic_camara"
+        android:drawablePadding="8dp" />
+
+    <Button
+        android:id="@+id/btn_info"
+        android:layout_width="wrap_content"
+        android:fontFamily="@font/akbar"
+        android:backgroundTint="@color/background_dm"
+        android:layout_height="wrap_content"
+        android:text="Marvel, Los Simpsons"
+        android:drawableLeft="@drawable/ic_api"
+        android:layout_marginTop="16dp"
+        android:drawablePadding="8dp" />
+
+    <Button
+        android:id="@+id/btn_notificaciones"
+        android:layout_width="wrap_content"
+        android:fontFamily="@font/akbar"
+        android:backgroundTint="@color/background_dm"
+        android:layout_height="wrap_content"
+        android:text="Notificaciones"
+        android:drawableLeft="@drawable/ic_notificaciones"
+        android:layout_marginTop="16dp"
+        android:drawablePadding="8dp" />
+    <Button
+        android:id="@+id/voiceCommandButton"
+        android:layout_width="36dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/ic_micro"
+        android:contentDescription="Botón de comando por voz"
+        />
+
+
+</LinearLayout>
