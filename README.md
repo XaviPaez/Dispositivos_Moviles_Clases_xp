@@ -18,8 +18,6 @@
 * Uso de FrameLayouts.
 * Autenticación Biométrica.
 * Procesos de ejecucion en segundo plano con corrutinas.
-
-  
 ## Implementaciones
 * Core
 * AppCompat
