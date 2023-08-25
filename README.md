@@ -53,3 +53,22 @@
 * ## Capturas
 
 ![](https://github.com/XaviPaez/Dispositivos_Moviles_Clases_xp/blob/main/API%20Marvel.jpeg)
+![](https://github.com/XaviPaez/Dispositivos_Moviles_Clases_xp/blob/main/API%20Simpsons.jpeg)
+![](https://github.com/XaviPaez/Dispositivos_Moviles_Clases_xp/blob/main/APIS.jpeg)
+![](https://github.com/XaviPaez/Dispositivos_Moviles_Clases_xp/blob/main/Buscar%20en%20API.jpeg)
+![](https://github.com/XaviPaez/Dispositivos_Moviles_Clases_xp/blob/main/Camara.jpeg)
+![](https://github.com/XaviPaez/Dispositivos_Moviles_Clases_xp/blob/main/Details%20Marvel.jpeg)
+![](https://github.com/XaviPaez/Dispositivos_Moviles_Clases_xp/blob/main/Details%20Simpsons%20Fav.jpeg)
+![](https://github.com/XaviPaez/Dispositivos_Moviles_Clases_xp/blob/main/Funcionalidad%20Camara.jpeg)
+![](https://github.com/XaviPaez/Dispositivos_Moviles_Clases_xp/blob/main/Funcionalidad%20Microfono.jpeg)
+![](https://github.com/XaviPaez/Dispositivos_Moviles_Clases_xp/blob/main/Huela%20Biometrica%20shimmer.jpeg)
+![](https://github.com/XaviPaez/Dispositivos_Moviles_Clases_xp/blob/main/Huella%20dactilar.jpeg)
+![](https://github.com/XaviPaez/Dispositivos_Moviles_Clases_xp/blob/main/Inicio%20Sesion.jpeg)
+![](https://github.com/XaviPaez/Dispositivos_Moviles_Clases_xp/blob/main/Menu.jpeg)
+![](https://github.com/XaviPaez/Dispositivos_Moviles_Clases_xp/blob/main/Microfono.jpeg)
+![](https://github.com/XaviPaez/Dispositivos_Moviles_Clases_xp/blob/main/Notificacion.jpeg)
+![](https://github.com/XaviPaez/Dispositivos_Moviles_Clases_xp/blob/main/Notificaciones.jpeg)
+![](https://github.com/XaviPaez/Dispositivos_Moviles_Clases_xp/blob/main/Permisos%20Microfono.jpeg)
+![](https://github.com/XaviPaez/Dispositivos_Moviles_Clases_xp/blob/main/Registro.jpeg)
+
+
