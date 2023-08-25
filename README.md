@@ -50,7 +50,7 @@
 * Firebase Analytics ktx          
 * Firebase Auth ktx
 
-* ## Capturas
+## Capturas
 
 ![](https://github.com/XaviPaez/Dispositivos_Moviles_Clases_xp/blob/main/API%20Marvel.jpeg)
 ![](https://github.com/XaviPaez/Dispositivos_Moviles_Clases_xp/blob/main/API%20Simpsons.jpeg)
