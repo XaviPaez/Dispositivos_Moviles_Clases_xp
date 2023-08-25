@@ -4,21 +4,19 @@
 
     <item
         android:id="@+id/Inicio"
-        android:icon="@drawable/icono_capitan30"
-        android:title="@string/menu_inicio"
+        android:icon="@drawable/logo_marvel"
         android:visible="true"
         />
     <item
         android:id="@+id/Favorito"
 
-        android:icon="@drawable/star"
-        android:title="@string/menu_favorito"
+        android:icon="@drawable/estrella"
         android:visible="true"
         />
     <item
         android:id="@+id/chatgpt"
-        android:icon="@drawable/icono_homer"
-        android:title="@string/los_simpsons"
+        android:icon="@drawable/logosimps"
+
         android:visible="true"
         />
 </menu>

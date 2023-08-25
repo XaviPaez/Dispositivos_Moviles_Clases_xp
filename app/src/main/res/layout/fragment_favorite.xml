@@ -9,8 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:fontFamily="@font/akbar"
         android:padding="16dp"
-        android:text="Buscador"
+        android:text="Busca tu personaje"
         android:textColor="@color/white"
         android:textSize="26sp"
         android:textStyle="bold" />
@@ -19,6 +20,7 @@
         android:id="@+id/txtFilter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/akbar"
         android:layout_margin="10dp"
         android:imeOptions="actionSearch"
         android:maxLines="1"
@@ -35,6 +37,7 @@
             android:id="@+id/rvMarvelChars"
             android:layout_width="365dp"
             android:layout_height="match_parent"
+            android:fontFamily="@font/akbar"
             android:layout_margin="10dp"
 
             />

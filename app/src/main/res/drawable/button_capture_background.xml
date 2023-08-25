@@ -1,0 +1,16 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Borde -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#8B96CD"/> <!-- Color de fondo del botón -->
+            <corners android:radius="8dp"/> <!-- Radio de las esquinas -->
+        </shape>
+    </item>
+    <!-- Fondo del botón -->
+    <item android:left="1dp" android:right="1dp" android:top="1dp" android:bottom="1dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/background_dm"/> <!-- Color de fondo del botón -->
+            <corners android:radius="8dp"/> <!-- Radio de las esquinas -->
+        </shape>
+    </item>
+</layer-list>

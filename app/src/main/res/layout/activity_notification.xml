@@ -4,37 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo_homero"
     tools:context=".ui.activities.NotificationActivity">
 
     <TimePicker
         android:id="@+id/timePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="52dp"
+        android:amPmBackgroundColor="#FF7700"
+        android:background="#C6A4FFD8"
+        android:numbersBackgroundColor="#9FE871"
+        android:numbersInnerTextColor="#0037FF"
+        android:numbersSelectorColor="#7DDD62"
+        android:scrollbarSize="4dp"
+        android:timePickerMode="spinner"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnNotification"
+        android:id="@+id/btnNotificacion"
         android:layout_width="260dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/akbar"
-        android:layout_marginTop="76dp"
-        android:text="Enviar Notificacion"
+        android:layout_marginTop="45dp"
+        android:backgroundTint="#F3932C"
+        android:text="Enviar notificacion"
+        app:icon="@android:drawable/ic_menu_send"
+        app:iconSize="40dp"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timePicker" />
+        app:layout_constraintTop_toBottomOf="@+id/timePicker"
+        app:layout_constraintVertical_bias="0.558" />
 
     <Button
-        android:id="@+id/btnNotificationProgramada"
+        android:id="@+id/btnNotificacionProgramada"
         android:layout_width="260dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/akbar"
-        android:backgroundTint="@color/red"
-        android:layout_marginTop="552dp"
-        android:text="Notificacion programada"
+        android:layout_marginTop="45dp"
+        android:backgroundTint="#17CDA9"
+        android:text="Enviar notificacion Programada"
+        app:icon="@android:drawable/ic_menu_send"
+        app:iconSize="40dp"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/btnNotificacion"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

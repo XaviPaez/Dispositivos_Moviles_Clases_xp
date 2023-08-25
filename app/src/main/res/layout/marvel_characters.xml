@@ -7,7 +7,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="150dp"
-        android:layout_height="250dp"
+        android:layout_height="290dp"
         android:layout_margin="25dp"
         app:cardCornerRadius="40dp"
         app:cardElevation="10dp"
@@ -26,13 +26,15 @@
                 android:id="@+id/imgMarvel"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
-                android:layout_marginStart="20dp"
+                app:circularflow_radiusInDP="42dp"
                 android:layout_marginTop="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/txtName"
+                android:fontFamily="@font/akbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -45,6 +47,7 @@
             <TextView
                 android:id="@+id/txtComic"
                 android:layout_width="100dp"
+                android:fontFamily="@font/akbar"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"

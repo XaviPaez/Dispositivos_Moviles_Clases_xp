@@ -10,6 +10,7 @@
     <color name="red">#D3266B</color>
     <color name="dark_blue">#2C2F3C</color>
     <color name="yellow">#FFC107</color>
-
+    <color name="yellow1">#ADAA8411</color>
     <color name="background_search">#878686</color>
+    <color name="background_search1">#F5616A9E</color>
 </resources>

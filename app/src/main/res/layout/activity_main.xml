@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="161dp"
-        android:layout_height="149dp"
+        android:layout_width="183dp"
+        android:layout_height="168dp"
         android:layout_gravity="center"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
@@ -48,16 +48,15 @@
         android:layout_marginTop="10dp"
         android:fontFamily="@font/akbar"
         android:text="Correo:"
-        android:textColor="#21FFD3" />
+        android:textColor="#FFC107" />
 
     <EditText
         android:id="@+id/text_email"
         android:layout_width="289dp"
         android:layout_height="49dp"
-        android:fontFamily="@font/akbar"
         android:layout_marginStart="54dp"
         android:ems="10"
-        android:hint="example@email.com"
+        android:fontFamily="@font/akbar"
         android:inputType="textEmailAddress"
         android:textColorHint="#FFFFFF" />
 
@@ -68,7 +67,7 @@
         android:fontFamily="@font/akbar"
         android:layout_marginStart="54dp"
         android:text="Contraseña:"
-        android:textColor="#21FFD3"
+        android:textColor="#FFC107"
         android:translationX="-4dp" />
 
     <EditText
@@ -78,9 +77,8 @@
         android:layout_marginStart="54dp"
         android:fontFamily="@font/akbar"
         android:ems="10"
-        android:hint="password"
         android:inputType="textPassword"
-        android:textColorHint="#FFFFFF" />
+        android:textColorHint="#7AFF9800" />
 
     <Button
         android:id="@+id/btn_ingresar"
@@ -89,7 +87,7 @@
         android:layout_gravity="center_horizontal"
         android:fontFamily="@font/akbar"
         android:layout_marginTop="10dp"
-        android:backgroundTint="#17CDA9"
+        android:backgroundTint="#A6FFC107"
         android:text="Ingresar"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -105,76 +103,75 @@
         android:text="O conéctese usando las redes sociales"
         android:textColor="#FFFFFF" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/btnTwitter"
-            android:layout_width="135dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="56dp"
-            android:layout_marginTop="14dp"
-            android:fontFamily="@font/akbar"
-            android:backgroundTint="#1DA1F2"
-            android:gravity="right|center_vertical"
-            android:text="Twitter"
-            android:textColor="#FFFFFF"
-            android:textSize="17sp"
-            android:textStyle="bold"
-            app:cornerRadius="25px" />
+    <Button
+        android:id="@+id/btnTwitter"
+        android:layout_width="155dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#1DA1F2"
+        android:fontFamily="@font/akbar"
+        android:gravity="center"
+        android:text="Twitter"
+        android:textColor="#FFFFFF"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:cornerRadius="25px"
+        app:layout_constraintEnd_toStartOf="@+id/btnResult"
+        app:layout_constraintHorizontal_bias="0.71"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btnResult"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_marginStart="22dp"
-            android:layout_marginTop="14dp"
-            android:layout_marginEnd="64dp"
-            android:backgroundTint="#1877F2"
-            android:fontFamily="@font/akbar"
-            android:gravity="right|center_vertical"
-            android:text="Facebook"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:cornerRadius="25px" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/btnResult"
+        android:layout_width="155dp"
+        android:layout_height="48dp"
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/registro"
-            android:layout_width="wrap_content"
-            android:fontFamily="@font/akbar"
-            android:layout_height="wrap_content"
-            android:text="Regístrese"
-            android:textColor="#21FFD3" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="44dp"
-            android:text="Olvido su contraseña?"
-            android:textColor="#FFFFFF"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnTwitter" />
-    </LinearLayout>
+        android:layout_marginEnd="24dp"
+        android:backgroundTint="#1877F2"
+        android:fontFamily="@font/akbar"
+        android:gravity="center"
+        android:text="Facebook"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:cornerRadius="25px"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnHuella"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/akbar"
         android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="52dp"
+        android:backgroundTint="#FFC107"
+        android:fontFamily="@font/akbar"
         android:text="Ingresar con Huella"
-        android:backgroundTint="#F3932C"></Button>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"></Button>
+
+    <TextView
+        android:id="@+id/registro"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:fontFamily="@font/akbar"
+        android:textSize="20dp"
+        android:text="Regístrese"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/btnHuella"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.685" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </LinearLayout>

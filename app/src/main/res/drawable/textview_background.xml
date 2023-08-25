@@ -1,0 +1,17 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Borde -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#646A8C"/> <!-- Color de fondo del borde -->
+            <stroke android:color="#3F51B5" android:width="2dp"/> <!-- Color y ancho del borde -->
+            <corners android:radius="8dp"/> <!-- Radio de las esquinas -->
+        </shape>
+    </item>
+    <!-- Fondo del TextView -->
+    <item android:left="2dp" android:right="2dp" android:top="2dp" android:bottom="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#30000000"/> <!-- Color de fondo más transparente -->
+            <corners android:radius="6dp"/> <!-- Radio de las esquinas -->
+        </shape>
+    </item>
+</layer-list>

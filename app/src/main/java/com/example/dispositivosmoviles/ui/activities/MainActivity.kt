@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
         registerForActivityResult(StartActivityForResult()) { activityResult ->
 
             val sn = Snackbar.make(
-                binding.textView,
+                binding.titulo ,
                 " ",
                 Snackbar.LENGTH_LONG
             )
@@ -161,7 +161,7 @@ class MainActivity : AppCompatActivity() {
 
                 false ->{
                     Snackbar.make(
-                        binding.textView,
+                        binding.titulo,
                         "Denegado",
                         Snackbar.LENGTH_LONG
                     ).show()
@@ -178,33 +178,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         auth = Firebase.auth
-
-        binding.btnIngresar.setOnClickListener {
-
-            if(binding.textEmail.text.toString().isNotEmpty() && binding.textEmail.text.toString().isNotEmpty()){
-                signInWithEmailAndPassword(
-                    binding.textEmail.text.toString(),
-                    binding.textPassword.text.toString()
-
-                )
-                startActivity(Intent(this,menuApp::class.java))
-            }else{
-                Toast.makeText(
-                    baseContext,
-                    "Campos vacios, ingrese su correo y contraseña",
-                    Toast.LENGTH_SHORT,
-                ).show()
-            }
-
-
-
-        }
-        binding.registro.setOnClickListener {
-            startActivity(Intent(this,RegistroActivity::class.java))
-
-        }
-
-
 
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
@@ -271,7 +244,7 @@ class MainActivity : AppCompatActivity() {
                     Log.d(TAG, "signInWithEmail:success")
                     val user = auth.currentUser
                     
-                    startActivity(Intent(this, BiometricActivity::class.java))
+                   // startActivity(Intent(this, menuApp::class.java))
 
                 } else {
                     // If sign in fails, display a message to the user.
@@ -321,7 +294,29 @@ class MainActivity : AppCompatActivity() {
 
     private fun initClass() {
 
+        binding.btnIngresar.setOnClickListener {
 
+            if(binding.textEmail.text.toString().isNotEmpty() && binding.textEmail.text.toString().isNotEmpty()){
+                signInWithEmailAndPassword(
+                    binding.textEmail.text.toString(),
+                    binding.textPassword.text.toString()
+                )
+                startActivity(Intent(this,menuApp::class.java))
+            }else{
+                Toast.makeText(
+                    baseContext,
+                    "Campos vacios, ingrese su correo y contraseña",
+                    Toast.LENGTH_SHORT,
+                ).show()
+            }
+
+
+
+        }
+        binding.registro.setOnClickListener {
+            startActivity(Intent(this,RegistroActivity::class.java))
+
+        }
         binding.btnTwitter.setOnClickListener {
             locationContract.launch(android.Manifest.permission.ACCESS_FINE_LOCATION)
 
@@ -338,7 +333,7 @@ class MainActivity : AppCompatActivity() {
             registerForActivityResult(StartActivityForResult()) { resultActivity ->
 
                 val sn = Snackbar.make(
-                    binding.textView,
+                    binding.titulo,
                     " ",
                     Snackbar.LENGTH_LONG
                 )

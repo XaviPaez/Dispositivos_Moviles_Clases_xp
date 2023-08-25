@@ -37,15 +37,18 @@ class DetailsMarvel : AppCompatActivity() {
         val item = intent.getParcelableExtra<MarvelChars>("name")
 
         if (item != null) {
+
             binding.txtName.text = item.name
             Picasso.get().load(item.image).into(binding.imgMarvel)
+
+
             binding.btnFavoritos.setOnClickListener {
                 var checkInsert: Boolean = saveMarvelItem(
                     MarvelChars(
                         item.id,
                         binding.txtName.text.toString(),
                         item.comic,
-                        item.image
+                        item.image,
                     )
                 )
                 if (checkInsert) {

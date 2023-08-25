@@ -27,12 +27,12 @@ class NotificationActivity : AppCompatActivity() {
         binding = ActivityNotificationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnNotification.setOnClickListener {
+        binding.btnNotificacion.setOnClickListener {
            createNotificationChannel()
             sendNotification()
         }
 
-        binding.btnNotificationProgramada.setOnClickListener {
+        binding.btnNotificacionProgramada.setOnClickListener {
             val calendar = Calendar.getInstance()
             val hora = binding.timePicker.hour
             val minute = binding.timePicker.minute
