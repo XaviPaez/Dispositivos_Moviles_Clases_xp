@@ -26,20 +26,9 @@
         android:gravity="left|center_vertical"
         android:fontFamily="@font/akbar"
         android:text="Registrate"
-        android:textColor="@color/white"
+        android:textColor="@color/yellow"
         android:textSize="40sp"
         android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/label_saludo"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/akbar"
-        android:layout_gravity="center_horizontal"
-        android:text="Ingrese su correo y su contraseña para registrarse"
-        android:layout_marginTop="24dp"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/label_correo"
@@ -49,7 +38,7 @@
         android:layout_marginStart="54dp"
         android:layout_marginTop="18dp"
         android:text="Correo:"
-        android:textColor="#21FFD3" />
+        android:textColor="@color/yellow" />
 
     <EditText
         android:id="@+id/text_email"
@@ -59,9 +48,7 @@
         android:layout_marginStart="54dp"
         android:background="#C8333232"
         android:ems="10"
-        android:hint="example@email.com"
         android:inputType="textEmailAddress"
-        android:textColorHint="#FFFFFF"
         android:textColor="#FFFFFF"/>
 
     <TextView
@@ -72,8 +59,7 @@
         android:layout_marginStart="54dp"
         android:layout_marginTop="18dp"
         android:text="Contraseña:"
-        android:textColor="#21FFD3"
-        android:translationX="-4dp" />
+        android:textColor="@color/yellow" />        android:translationX="-4dp" />
 
     <EditText
         android:id="@+id/text_password"
@@ -83,19 +69,18 @@
         android:fontFamily="@font/akbar"
         android:background="#C8333232"
         android:ems="10"
-        android:hint="password"
         android:inputType="textPassword"
         android:textColorHint="#FFFFFF"
         android:textColor="#FFFFFF"/>
 
     <Button
         android:id="@+id/btn_register"
-        android:layout_width="289dp"
-        android:layout_height="49dp"
+        android:layout_width="206dp"
+        android:layout_height="73dp"
         android:layout_gravity="center_horizontal"
-        android:fontFamily="@font/akbar"
         android:layout_marginTop="28dp"
         android:backgroundTint="#17CDA9"
+        android:fontFamily="@font/akbar"
         android:text="Registrarse"
         android:textSize="18sp"
         android:textStyle="bold"

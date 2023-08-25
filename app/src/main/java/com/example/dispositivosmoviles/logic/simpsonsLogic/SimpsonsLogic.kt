@@ -27,7 +27,7 @@ class SimpsonsLogic {
 
         val response =
             ApiConnection.getService(ApiConnection.typeApi.Simpsons, SimpsonsEndpoint::class.java)
-                .getAllCharacters(100)
+                .getAllCharacters(110)
 
         if (response.isSuccessful) {
             response.body()!!.docs.forEach {

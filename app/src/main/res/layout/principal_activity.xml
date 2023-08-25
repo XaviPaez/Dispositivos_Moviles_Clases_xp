@@ -8,25 +8,91 @@
     android:orientation="horizontal"
     tools:context=".ui.activities.PrincipalActivity">
 
-
     <FrameLayout
         android:id="@+id/frm_container"
         android:layout_width="match_parent"
-
         android:layout_height="match_parent"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" >
 
-   />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/marvelTextView"
+                android:layout_width="295dp"
+                android:layout_height="206dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/akbar"
+                android:gravity="center"
+                android:text="Marvel, una de las franquicias más icónicas y exitosas en la industria del entretenimiento, ha dejado una huella indeleble en la cultura popular. Fundada en 1939 como Timely Publications, evolucionó con los años para convertirse en el gigante que es hoy en día. Conocida por sus cómics, películas y series, Marvel ha dado vida a un vasto universo de personajes cautivadores."
+                android:textColor="@color/cyan"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.158" />
+
+            <TextView
+                android:id="@+id/marvelTextView1"
+                android:layout_width="323dp"
+                android:layout_height="238dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="116dp"
+                android:fontFamily="@font/akbar"
+                android:textColor="@color/cyan"
+                android:gravity="center"
+                android:text="Los Simpsons creados por Matt Groening, son una de las series animadas más queridas y longevas en la historia de la televisión. Desde su debut en 1989, esta irreverente familia amarilla ha dejado una marca indeleble en la cultura popular. La serie se centra en la familia Simpson: Homer, el patriarca torpe y aficionado a la cerveza; Marge, la devota ama de casa; Bart, el travieso hijo mayor; Lisa, la inteligente hija mediana; y Maggie, la bebé con una sorprendente cantidad de conocimiento"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/akbar"
+                android:text="Algo de Marvel"
+                android:textColor="@color/dark_blue"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/marvelTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.685" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/akbar"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/yellow"
+                android:text="Algo de los Simpsons"
+                app:layout_constraintBottom_toTopOf="@+id/marvelTextView1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/marvelTextView"
+                app:layout_constraintVertical_bias="0.678" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:itemIconSize="78dp"
+        app:itemIconSize="50dp"
         app:itemActiveIndicatorStyle="@style/activeIndicator"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

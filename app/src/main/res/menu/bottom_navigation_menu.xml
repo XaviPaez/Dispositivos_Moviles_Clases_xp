@@ -10,7 +10,7 @@
     <item
         android:id="@+id/Favorito"
 
-        android:icon="@drawable/estrella"
+        android:icon="@drawable/lupa"
         android:visible="true"
         />
     <item

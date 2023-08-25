@@ -25,7 +25,7 @@
         android:imeOptions="actionSearch"
         android:maxLines="1"
         android:singleLine="true"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="14sp"></EditText>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

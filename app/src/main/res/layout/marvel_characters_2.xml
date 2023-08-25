@@ -7,7 +7,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="173dp"
-        android:layout_height="350dp"
+        android:layout_height="275dp"
         android:layout_margin="25dp"
         app:cardCornerRadius="40dp"
         app:cardElevation="10dp"
@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:textColor="#000000"
+                android:textColor="@color/cyan"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imgMarvel"
@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
 
                 android:layout_margin="10dp"
-                android:textColor="#020202"
+                android:textColor="@color/cyan"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtName"

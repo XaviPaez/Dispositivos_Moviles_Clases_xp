@@ -143,57 +143,6 @@ class SimpsonsFragment : Fragment() {
         }
     }
 
-    /*fun updateDataRV(limit: Int,offset: Int) {
-
-        var items:List<MarvelChars> = listOf()
-        lifecycleScope.launch(Dispatchers.Main) {
-
-            items = withContext(Dispatchers.IO) {
-
-
-                return@withContext (MarvelLogic().getAllMarvelChars(offset, limit))
-            }
-
-
-            rvAdapter.updateListItems(items)
-
-            binding.rvMarvelChars.apply {
-                this.adapter = rvAdapter
-                this.layoutManager = gManager
-            }
-        }
-
-
-
-    }*/
-
-
-    /*override fun onResume() {
-        super.onResume()
-        lifecycleScope.launch(Dispatchers.Main){
-            withContext(Dispatchers.IO){
-                marvelCharsItemsDB= MarvelLogic().getAllMarvelChardDB().toMutableList()
-            }
-
-        }
-    }
-
-    private fun getDataStore() =
-
-        requireActivity().dataStore.data.map {
-            // si no me devuelve nada me devuelve vacio, no  devuelve valor nos devuelve una lista de valores siempre que lo ejecutamos
-                prefs ->
-
-            UserDataStore(
-                name = prefs[stringPreferencesKey("usuario")].orEmpty(),
-                email = prefs[stringPreferencesKey("email")].orEmpty(),
-                session = prefs[stringPreferencesKey("session")].orEmpty()
-
-
-            )
-
-        }*/
-
 
 
 }
